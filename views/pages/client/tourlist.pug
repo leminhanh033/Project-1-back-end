@@ -1,0 +1,184 @@
+extends ../../layouts/client/default 
+block main
+  .breadcumb
+    img(
+      alt="" 
+      src="/clientasset/img/city-river.png"
+      )
+    .inner-wrap
+      div Tour Nước Ngoài
+      .text
+        a(href="#")
+          div Trang Chủ
+        i.fa-solid.fa-angles-right
+        a(href="#")
+          div Tour Nước Ngoài
+  .main
+    .inner-left
+      .inner-wrap
+        .first-part
+          div Bộ Lọc
+          i.fa-solid.fa-filter
+        .left-second-part
+          div Điểm đi
+          select(name="")
+            option(value="") Hà Nội
+            option(value="") TP.Hồ Chí Minh
+            option(value="") Hải Phòng
+            option(value="") Đà Nẵng
+        .left-second-part
+          div Điểm đến
+          select(name="")
+            option(value="") -- Chọn điểm đến --
+            option(value="") Hà Nội
+            option(value="") TP.Hồ Chí Minh
+            option(value="") Hải Phòng
+            option(value="") Đà Nẵng
+        .left-second-part
+          div Ngày khởi hành
+          input(type="date")
+        .third-part
+          .inner-part-title Số Lượng Hành Khách
+          .box
+            div Người lớn:
+            input(
+              placeholder="0" 
+              type="number"
+              )
+          .box
+            div Trẻ em:
+            input(
+              placeholder="0" 
+              type="number"
+              )
+          .box
+            div Em bé:
+            input(
+              placeholder="0" 
+              type="number"
+              )
+        .left-second-part
+          div Mức giá
+          select(name="")
+            option(value="") -- Chọn khoảng giá --
+            option(value="") Dưới 1tr
+            option(value="") Từ 1tr đến 3tr
+            option(value="") Từ 3tr đến 6tr
+            option(value="") Từ 6tr đến 10tr
+            option(value="") Trên 10tr
+        button Áp Dụng
+      .overlay
+    .inner-right
+      .content-title
+        .inner-title Tour Nước Ngoài
+        p
+          | Du lịch Châu Á: là châu lục lớn và đông dân nhất thế giới. Châu Á cũng có nhiều danh lam thắng cảnh đẹp tại một số quốc gia như Hàn Quốc, Nhật Bản, Trung Quốc, Việt Nam,... và VK Travel là nhà tổ chức du lịch chuyên nghiệp hàng đầu Châu Á, đã 5 lần liên tiếp nhận giải TTG Travel Awards. Hãy cùng 28.Travel du lịch Châu Á để tận hưởng những dịch vụ tốt nhất.
+      .second-part
+        .inner-sort
+          .inner-sort-title Sắp xếp :
+          .tag
+            div Giá tăng dần
+            i.fa-solid.fa-square-arrow-up-right
+          .tag
+            div Giá giảm dần
+            i.fa-solid.fa-square-arrow-up-right.rotate
+          .tag.special
+            div Khuyến Mãi Hot
+            i.fa-solid.fa-tag
+          .tag
+            div Xem Nhiều
+            i.fa-solid.fa-eye
+        .all
+          div
+            | Tất cả:
+            b 101 Tour
+          .filter
+            div Bộ Lọc
+            i.fa-solid.fa-filter
+      .list
+        .inner-item-block-2
+          img(
+            alt="" 
+            src="/clientasset/img/sydney.png"
+            )
+          div
+            i.fa-solid.fa-bolt
+            span Giảm -30%
+          div Hà Nội - Lào Cai - SaPa 4N3Đ
+          div
+            div
+              span
+                del 13.650.000
+              span đ
+            div
+              span 2.590.000
+              span đ
+          div
+            div
+              | Mã Tour:
+              b 123456789
+            div
+              | Ngày Khởi Hành:
+              b 22/07/2024
+            div
+              | Thời Gian:
+              b 10 Ngày 9 Đêm
+          div
+            div
+              div
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-regular.fa-star
+              span (5)
+            div
+              span Số chỗ còn:
+              span 10
+        .inner-item-block-2
+          img(
+            alt="" 
+            src="/clientasset/img/sydney.png"
+            )
+          div
+            i.fa-solid.fa-bolt
+            span Giảm -30%
+          div Hà Nội - Lào Cai - SaPa 4N3Đ
+          div
+            div
+              span
+                del 13.650.000
+              span đ
+            div
+              span 2.590.000
+              span đ
+          div
+            div
+              | Mã Tour:
+              b 123456789
+            div
+              | Ngày Khởi Hành:
+              b 22/07/2024
+            div
+              | Thời Gian:
+              b 10 Ngày 9 Đêm
+          div
+            div
+              div
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-solid.fa-star
+                i.fa-regular.fa-star
+              span (5)
+            div
+              span Số chỗ còn:
+              span 10
+      .inner-breadcumb
+        i.fa-solid.fa-angles-left
+        span 1
+        span 2
+        span 3
+        span 4
+        i.fa-solid.fa-angles-right
+        

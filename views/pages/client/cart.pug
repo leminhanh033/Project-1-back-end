@@ -1,0 +1,115 @@
+extends ../../layouts/client/default.pug 
+
+block main 
+  .section11
+    .container
+      .inner-wrap
+        .inner-label
+          div Giỏ Hàng
+          div
+            span Quay lại mua hàng
+            i.fa-solid.fa-angle-right
+        .list-product
+          .inner-product
+            .inner-sign
+              i.fa-solid.fa-x
+              input(type="checkbox")
+            .infor-product
+              img(
+                alt="" 
+                src="/clientasset/img/giohang.png"
+                )
+              .inner-infor
+                .infor-label Tour Châu Âu Đón Noel | 11N10D | Pháp – Thụy Sĩ – Ý
+                div
+                  div
+                    | Mã Tour:
+                    b 123456789
+                  div
+                    | Ngày Khởi Hành:
+                    b 22/07/2024
+                  div
+                    | Thời Gian:
+                    b 10 Ngày 9 Đêm
+            .inner-section-4
+              .inner-section-label Số Lượng Hành Khách
+              .infor
+                .label Người lớn:
+                input(type="number")
+                .price
+                  span 1 x
+                  span.hl 10.000.000
+              .infor
+                .label Trẻ em:
+                input(type="number")
+                .price
+                  span 0 x
+                  span.hl 7.990.000
+              .infor
+                .label Em bé:
+                input(type="number")
+                .price
+                  span 0 x
+                  span.hl 5.990.000
+        .coupon
+          form#coupon-form(action="")
+            input#coupon-input(type="text")
+            button Dùng Mã
+        .total
+          div
+            .total-label Tổng tiền:
+            .price 15.070.000 đ
+          div
+            .total-label Giảm:
+            .price -5.070.000 đ
+          div
+            .total-label Thanh toán:
+            .hl 17.070.000 đ
+  .section12
+    .container
+      .inner-wrap
+        .inner-infor-custom
+          .inner-title Thông Tin Khách Hàng
+          form#custom-infor.inner-form
+            div
+              input#name(
+                placeholder="Họ và tên" 
+                type="text"
+                )
+            div
+              input#phone(
+                placeholder="Số điện thoại" 
+                type="text"
+                )
+            .hl
+              textarea(placeholder="Ghi chú")
+        .inner-method
+          .inner-title Chọn phương thức thanh toán
+          .inner-list
+            div
+              input#money(
+                checked="" 
+                name="method" 
+                type="radio"
+                )
+              label(for="money") Thanh toán tiền mặt khi đi tour
+            div
+              input#momo(
+                name="method" 
+                type="radio"
+                )
+              label(for="momo") Ví MoMo
+            div
+              input#bank(
+                name="method" 
+                type="radio"
+                )
+              label(for="bank") Chuyển khoản ngân hàng
+        .inner-banking
+          .inner-title.hl-title Thông tin chuyển khoản
+          .inner-infor-banking
+            div Ngân hàng : Vietcombank
+            div Tên tài khoản: Le Van A
+            div STK: 0123456789
+        .button
+          button(form="custom-infor") ĐẶT Tour
