@@ -1,0 +1,45 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+    .content
+        .inner-title Tạo tài khoản quản trị
+        form#admin-create.section-8 
+            .inner-group 
+                label(for="name") Họ tên
+                input(type="text" id="name" )
+            .inner-group 
+                label(for="email") Email
+                input(type="email" id="email")
+            .inner-group 
+                label(for="phone") Số điện thoại
+                input(type="text" id="phone")            
+            .inner-group 
+                label(for="nhom-quyen") Nhóm quyền
+                select#nhom-quyen(name="") 
+                    option Quản trị viên
+            .inner-group 
+                label(for="chuc-vu") Chức vụ
+                select#chuc-vu(name="") 
+                    option Giám đốc
+            .inner-group 
+                label(for="state") Trạng thái
+                select#state(name="") 
+                    option Hoạt động
+            .inner-group 
+                label(for="pass") Mật khẩu
+                input(type="password" id="pass")
+            .inner-group.two-col
+                div.avatar 
+                    label(for="avatar") Ảnh đại diện
+                    div.avartar-file
+                        input(type="file" id="avatar" filepond)
+            
+            .inner-group.two-col
+                div.button
+                    button Tạo mới
+            .inner-group.two-col
+                div.return
+                    a(href=`/${pathAdmin}/setting/account-admin/list`) Quay lại danh sách
+
+
+                        

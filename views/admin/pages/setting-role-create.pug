@@ -1,0 +1,46 @@
+extends ../layout/tong-quan-layout.pug
+
+
+block main
+    .content
+        .inner-title Tạo nhóm quyền
+        form#nhom-quyen.section-8 
+            .inner-group 
+                label(for="name") Tên nhóm quyền *
+                input(type="text" id="name" name="name")
+            .inner-group 
+                label(for="short-des") Mô tả ngắn
+                input(type="text" id="short-des")
+          
+            .inner-group.destination 
+                div Phân quyền
+                .inner-destination
+                    .inner-item                     
+                        include ../mixin/checkbox.pug
+                        +checkbox("check-23-0", "20px")
+                        span Xem trang Tổng quan
+                    .inner-item                     
+                        include ../mixin/checkbox.pug
+                        +checkbox("check-23-1", "20px")
+                        span Xem danh mục
+                    .inner-item                     
+                        include ../mixin/checkbox.pug
+                        +checkbox("check-23-2", "20px")
+                        span Tạo danh mục
+                    .inner-item                     
+                        include ../mixin/checkbox.pug
+                        +checkbox("check-23-3", "20px")
+                        span Sửa danh mục
+                    .inner-item                     
+                        include ../mixin/checkbox.pug
+                        +checkbox("check-23-4", "20px")
+                        span Xóa danh mục
+            .inner-group.two-col
+                div.button
+                    button Tạo mới
+            .inner-group.two-col
+                div.return
+                    a(href=`/${pathAdmin}/setting/role/list`) Quay lại danh sách
+
+
+                        

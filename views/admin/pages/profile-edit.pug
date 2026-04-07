@@ -1,0 +1,37 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+    .content
+        .inner-title Thông tin cá nhân
+        form#individualinfor.section-8 
+            .inner-group 
+                label(for="name") Họ tên *
+                input(type="text" id="name" name="name")
+            .inner-group 
+                label(for="email") Email *
+                input(type="email" id="email" name="email")
+            .inner-group 
+                label(for="phone") Số điện thoại*
+                input(type="text" id="phone" name="phone")
+            
+            .inner-group 
+                label(for="chuc-vu") Chức vụ
+                input(type="text" id="chuc-vu" name="chuc-vu")
+            .inner-group 
+                label(for="inner-nhom-quyen") Nhóm quyền
+                input(type="text" id="inner-nhom-quyen" name="nhom-quyen")
+            .inner-group.two-col
+                div.avatar 
+                    label(for="avatar") Ảnh đại diện
+                    div.avartar-file
+                        input(type="file" id="avatar" filepond accept="image/*")
+            
+            .inner-group.two-col
+                div.button
+                    button Cập nhật
+            .inner-group.two-col
+                div.return
+                    a(href=`/${pathAdmin}/profile/change-password`) Đổi mật khẩu
+
+
+                        

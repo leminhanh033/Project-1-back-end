@@ -1,0 +1,160 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+    .content
+        .inner-title Quản lý danh mục
+        .section-4 
+            .inner-filter.inner-border 
+                img(src="/adminasset/image/Filter-icon.svg", alt="") 
+                div Bộ lọc
+            .inner-item.inner-border 
+                select 
+                    option Trạng thái
+            .inner-item.inner-border 
+                select 
+                    option Người tạo
+            .inner-date.inner-border 
+                input(type="date")
+                div -
+                input(type="date")
+            .inner-reset
+                i.fa-solid.fa-rotate-left
+                div Xóa bộ lọc
+        .section-5 
+            .inner-action 
+                select 
+                    option -- Hành động --
+                    option Hành động 
+                div Áp dụng
+            .inner-search 
+                i.fa-solid.fa-magnifying-glass
+                input(type="text" placeholder="Tìm kiếm")
+            a.create-button(href=`/${pathAdmin}/category/create`)  + Tạo mới
+        .table-1 
+            table 
+                thead 
+                    tr 
+                        th.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-1(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-1"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        th.ten-danh-muc 
+                            div Tên danh mục
+                        th.anh-dai-dien
+                            div Ảnh đại diện
+                        th.position
+                            div Vị trí
+                        th.state
+                            div Trạng thái
+                        th.tao-boi
+                            div Tạo bởi
+                        th.update
+                            div Cập nhật bởi
+                        th.action
+                            div Hành động
+                tbody 
+                    tr 
+                        td.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-2(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-2"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        td.danh-muc
+                            div Danh mục 1
+                        td.anh-dai-dien 
+                            img(src="/adminasset/image/halong.png", alt="") 
+                        td.position
+                            div 1
+                        td.status
+                            .working Hoạt động
+                        td.tao-boi
+                            div Lê Văn A
+                            div 16:30 - 20/10/2024
+                        td.update
+                            div Lê Văn A
+                            div 16:30 - 20/10/2024
+                        td.action
+                            .inner-list 
+                                div 
+                                    i.fa-solid.fa-pen-to-square
+                                div 
+                                    i.fa-solid.fa-trash-can
+                    tr 
+                        td.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-3(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-3"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        td.danh-muc
+                            div Danh mục 1
+                        td.anh-dai-dien 
+                            img(src="/adminasset/image/halong.png", alt="") 
+                        td.position
+                            div 1
+                        td.status
+                            .pause Tạm dừng
+                        td.tao-boi
+                            div Lê Văn A
+                            div 16:30 - 20/10/2024
+                        td.update
+                            div Lê Văn A
+                            div 16:30 - 20/10/2024
+                        td.action
+                            .inner-list 
+                                div 
+                                    i.fa-solid.fa-pen-to-square
+                                div 
+                                    i.fa-solid.fa-trash-can
+                    tr 
+                        td.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-4(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-4"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        td.danh-muc
+                            div Danh mục 1
+                        td.anh-dai-dien 
+                            img(src="/adminasset/image/halong.png", alt="") 
+                        td.position
+                            div 1
+                        td.status
+                            .working Hoạt động
+                        td.tao-boi
+                            div Lê Văn A
+                            div 16:30 - 20/10/2024
+                        td.update
+                            div Lê Văn A
+                            div 16:30 - 20/10/2024
+                        td.action
+                            .inner-list 
+                                div 
+                                    i.fa-solid.fa-pen-to-square
+                                div 
+                                    i.fa-solid.fa-trash-can
+        .section-6 
+            div Hiển thị 1 - 9 của 78
+            select 
+                option Trang 1
+                option Trang 2
+                option Trang 3
+                option Trang 4
+
+
+                        

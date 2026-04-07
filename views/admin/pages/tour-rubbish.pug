@@ -1,0 +1,29 @@
+extends ../layout/tong-quan-layout.pug
+
+
+block main
+    .content
+        .inner-title Thùng rác tour
+        .section-5 
+            .inner-action 
+                select 
+                    option -- Hành động --
+                    option Hành động
+                div Áp dụng
+            .inner-search 
+                i.fa-solid.fa-magnifying-glass
+                input(type="text" placeholder="Tìm kiếm")
+                
+        include ../mixin/table-1-update.pug
+        +table-1("fa-solid fa-rotate-left","Xóa bởi")
+        
+        .section-6 
+            div Hiển thị 1 - 9 của 78
+            select 
+                option Trang 1
+                option Trang 2
+                option Trang 3
+                option Trang 4
+
+
+                        

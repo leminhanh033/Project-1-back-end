@@ -1,0 +1,15 @@
+extends ../layout/page-layout.pug
+
+block main
+  .page-layout
+    .inner-wrap 
+      div.inner-title Nhập mã OTP
+      div.inner-content Vui lòng nhập mã OTP để tiếp tục
+      .inner-block 
+        form#otp-password.inner-item
+          label(for="otp") Mã OTP
+          input(type="text", id="otp", placeholder="Mã OTP")
+        button(form="otp-password") Xác thực
+        .create 
+          span Bạn đã nhớ mật khẩu?   
+          a(href=`/${pathAdmin}/account/login`) Đăng nhập

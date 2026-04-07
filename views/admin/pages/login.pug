@@ -1,0 +1,31 @@
+extends ../layout/page-layout.pug
+
+block main
+  .page-layout
+    .inner-wrap 
+      div.inner-title Đăng nhập
+      div.inner-content Vui lòng nhập email và mật khẩu để tiếp tục
+      form#email-login-form.inner-block 
+        .inner-item
+          label(for="email-input") Email
+          input#email-input(type="email",name="email", placeholder="Ví dụ: levana@gmail.com")
+        .inner-item
+          label(for="password-input") Mật khẩu
+          input#password-input.pass(type="password", name="password")
+        .inner-line 
+          .remember-password 
+            .checkbox-wrapper-23
+              input#check-23(type="checkbox")
+              label(
+                style="--size: 24px" 
+                for="check-23"
+                )
+                svg(viewBox="0,0,50,50")
+                  path(d="M5 30 L 20 45 L 45 5")
+            span Nhớ mật khẩu
+          .forget-password 
+            a(href=`/${pathAdmin}/account/forgot-password`) Quên mật khẩu?
+        button Đăng Nhập
+        .create 
+          span Bạn chưa có tài khoản?   
+          a(href=`/${pathAdmin}/account/register`) Tạo tài khoản

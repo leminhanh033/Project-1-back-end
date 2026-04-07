@@ -1,0 +1,145 @@
+extends ../layout/tong-quan-layout.pug
+
+block main     
+    .content 
+        .inner-title Tổng quan
+        .section-1 
+            .inner-item 
+                img(src="/adminasset/image/section1-user.svg", alt="")
+                .inner-content 
+                    div Người dùng
+                    div 1.200
+            .inner-item 
+                img(src="/adminasset/image/section1-donhang.svg", alt="")
+                .inner-content 
+                    div Đơn hàng
+                    div 3.600
+            .inner-item 
+                img(src="/adminasset/image/section1-doanhthu.svg", alt="")
+                .inner-content 
+                    div Doanh thu
+                    div 300.000.000đ
+        .section-2
+            .section-2-header 
+                div Biểu đồ doanh thu
+                input(type="month")
+            .graph
+                div.chart
+                    canvas(id="myChart")
+        .section-3
+            .section-3-title Đơn hàng mới
+            .table 
+                table 
+                    thead 
+                        tr 
+                            th Mã
+                            th Thông tin khách
+                            th Danh sách tour
+                            th Thanh toán
+                            th Trạng thái
+                            th.right 
+                                div Ngày đặt
+                    tbody 
+                        tr 
+                            td OD000001
+                            td
+                                div Họ tên: Lê Văn A
+                                div SĐT: 0123456789
+                                div Ghi chú: Test...
+                            td
+                                .inner-product 
+                                    img(src="/adminasset/image/halong.png", alt="")
+                                    .inner-content 
+                                        div Tour Hạ Long
+                                        div Người lớn: 3 x 1.500.000đ
+                                        div Trẻ em: 2 x 1.300.000đ
+                                        div Em bé: 2 x 1.000.000đ
+                                .inner-product 
+                                    img(src="/adminasset/image/halong.png", alt="")
+                                    .inner-content 
+                                        div Tour Hạ Long
+                                        div Người lớn: 3 x 1.500.000đ
+                                        div Trẻ em: 2 x 1.300.000đ
+                                        div Em bé: 2 x 1.000.000đ
+                            td 
+                                div Tổng tiền: 10.000.000đ
+                                div Giảm: 400.000đ
+                                div Mã giảm: TOURMUAHE2024
+                                div Thanh toán: 9.600.000đ
+                                div PTTT: Ví Momo
+                                div TTTT: Đã thanh toán
+                            td 
+                                div.produce Khởi tạo
+                            td.right  
+                                div 16:20
+                                div 01/01/2024
+                        tr 
+                            td OD000001
+                            td
+                                div Họ tên: Lê Văn A
+                                div SĐT: 0123456789
+                                div Ghi chú: Test...
+                            td
+                                .inner-product 
+                                    img(src="/adminasset/image/halong.png", alt="")
+                                    .inner-content 
+                                        div Tour Hạ Long
+                                        div Người lớn: 3 x 1.500.000đ
+                                        div Trẻ em: 2 x 1.300.000đ
+                                        div Em bé: 2 x 1.000.000đ
+                                .inner-product 
+                                    img(src="/adminasset/image/halong.png", alt="")
+                                    .inner-content 
+                                        div Tour Hạ Long
+                                        div Người lớn: 3 x 1.500.000đ
+                                        div Trẻ em: 2 x 1.300.000đ
+                                        div Em bé: 2 x 1.000.000đ
+                            td 
+                                div Tổng tiền: 10.000.000đ
+                                div Giảm: 400.000đ
+                                div Mã giảm: TOURMUAHE2024
+                                div Thanh toán: 9.600.000đ
+                                div PTTT: Ví Momo
+                                div TTTT: Đã thanh toán
+                            td 
+                                div.checked Đã duyệt
+                            td.right  
+                                div 16:20
+                                div 01/01/2024
+                        tr 
+                            td OD000001
+                            td
+                                div Họ tên: Lê Văn A
+                                div SĐT: 0123456789
+                                div Ghi chú: Test...
+                            td
+                                .inner-product 
+                                    img(src="/adminasset/image/halong.png", alt="")
+                                    .inner-content 
+                                        div Tour Hạ Long
+                                        div Người lớn: 3 x 1.500.000đ
+                                        div Trẻ em: 2 x 1.300.000đ
+                                        div Em bé: 2 x 1.000.000đ
+                                .inner-product 
+                                    img(src="/adminasset/image/halong.png", alt="")
+                                    .inner-content 
+                                        div Tour Hạ Long
+                                        div Người lớn: 3 x 1.500.000đ
+                                        div Trẻ em: 2 x 1.300.000đ
+                                        div Em bé: 2 x 1.000.000đ
+                            td 
+                                div Tổng tiền: 10.000.000đ
+                                div Giảm: 400.000đ
+                                div Mã giảm: TOURMUAHE2024
+                                div Thanh toán: 9.600.000đ
+                                div PTTT: Ví Momo
+                                div TTTT: Đã thanh toán
+                            td 
+                                div.delete Đã hủy
+                            td.right  
+                                div 16:20
+                                div 01/01/2024
+                                    
+
+
+

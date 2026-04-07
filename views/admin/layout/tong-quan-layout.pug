@@ -1,0 +1,73 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title #{title}
+    link(rel="stylesheet", href="/adminasset/css/style.css")
+    link(rel="stylesheet", href="/adminasset/css/check-box.css")    
+    <script src="https://cdn.tiny.cloud/1/5hr00uf3eftssqfxtikgqr5763xunkfp51zkvphdxgw7yhq7/tinymce/8/tinymce.min.js" referrerpolicy="origin" crossorigin="anonymous"></script>
+    script(src="/adminasset/js/tinymce.js")    
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css")
+    link(href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet")
+    link(
+        href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
+        rel="stylesheet"
+    )
+  body 
+    .header 
+        .inner-logo 
+            .menu 
+                i.fa-solid.fa-bars
+            a.logo-content(href=`/${pathAdmin}/dashboard`) 
+                span 28
+                span Admin
+        .inner-inform 
+            .inner-icon 
+                img(src="/adminasset/image/bell.svg", alt="")
+                span 6
+            .inner-admin 
+                img(src="/adminasset/image/avatar.png", alt="")
+                div 
+                    div Le Van A
+                    div Admin
+    .body
+        .sider  
+            .list       
+                a.action(href=`#`) 
+                    i.fa-solid.fa-gauge-high
+                    div Tổng quan
+                a(href="#") 
+                    i.fa-solid.fa-table-cells-large
+                    div Quản lý danh mục
+                a(href="#") 
+                    i.fa-solid.fa-table-list
+                    div Quản lý tour
+                a(href="#") 
+                    i.fa-solid.fa-list-check
+                    div Quản lý đơn hàng
+                a(href="#") 
+                    i.fa-regular.fa-user
+                    div Quản lý người dùng
+                a(href="#") 
+                    i.fa-solid.fa-user-group
+                    div Thông tin liên hệ
+                hr 
+                a(href="#") 
+                    i.fa-solid.fa-gear
+                    div Cài đặt chung
+                a(href="#") 
+                    i.fa-regular.fa-user
+                    div Thông tin cá nhân
+                a(href="#") 
+                    i.fa-solid.fa-power-off
+                    div Đăng xuất
+            .overlay
+        block main
+    
+    script(src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js")
+    script(src="https://unpkg.com/filepond/dist/filepond.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.6/Sortable.js")
+    script(src="https://cdn.jsdelivr.net/npm/chart.js")
+    script(src="https://unpkg.com/just-validate@latest/dist/just-validate.production.min.js")
+    script(src="/adminasset/js/script.js")

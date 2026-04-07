@@ -1,0 +1,9 @@
+mixin checkbox(id, size="24px")
+    .checkbox-wrapper-23
+        input(type="checkbox" id=id)
+        label(
+            style=`--size: ${size};background-color: white`
+            for=id
+        )
+            svg(viewBox="0,0,50,50")
+                path(d="M5 30 L 20 45 L 45 5")

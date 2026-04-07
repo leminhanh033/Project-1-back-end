@@ -1,0 +1,17 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+  .content
+    .inner-title Cài đặt chung
+    .section-11 
+      a.inner-item(href=`/${pathAdmin}/setting/website-infor`)
+        i.fa-solid.fa-info
+        .text Thông tin website
+      a.inner-item(href=`/${pathAdmin}/setting/account-admin/list`)
+        i.fa-solid.fa-user-tie 
+        .text Tài khoản quản trị
+      a.inner-item(href=`/${pathAdmin}/setting/role/list`)
+        i.fa-solid.fa-user-gear
+        .text Nhóm quyền
+      
+      

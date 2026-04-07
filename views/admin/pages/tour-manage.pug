@@ -1,0 +1,54 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+    .content
+        .inner-title Quản lý tour
+        .section-4 
+            .inner-filter.inner-border 
+                img(src="/adminasset/image/Filter-icon.svg", alt="") 
+                div Bộ lọc
+            .inner-item.inner-border 
+                select 
+                    option Trạng thái 
+            .inner-item.inner-border 
+                select 
+                    option Người tạo
+            .inner-date.inner-border 
+                input(type="date")
+                div -
+                input(type="date")
+            .inner-item.inner-border 
+                select 
+                    option Danh mục
+            .inner-item.inner-border 
+                select 
+                    option Mức giá
+            .inner-reset
+                i.fa-solid.fa-rotate-left
+                div Xóa bộ lọc
+        .section-5 
+            .inner-action 
+                select 
+                    option -- Hành động --
+                    option Hành động
+                div Áp dụng
+            .inner-search 
+                i.fa-solid.fa-magnifying-glass
+                input(type="text" placeholder="Tìm kiếm")
+            a.create-button(href=`/${pathAdmin}/tour/create`)  + Tạo mới
+            .inner-trash
+                a(href=`/${pathAdmin}/tour/rubbish`) Thùng rác
+                
+        include ../mixin/table-1-update.pug
+        +table-1("fa-solid fa-pen-to-square","Cập nhật bởi")
+        
+        .section-6 
+            div Hiển thị 1 - 9 của 78
+            select 
+                option Trang 1
+                option Trang 2
+                option Trang 3
+                option Trang 4
+
+
+                        

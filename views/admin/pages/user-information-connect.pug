@@ -1,0 +1,98 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+    .content
+        .inner-title Thông tin liên hệ
+        .section-4 
+            .inner-filter.inner-border 
+                img(src="/adminasset/image/Filter-icon.svg", alt="") 
+                div Bộ lọc
+            .inner-date.inner-border 
+                input(type="date")
+                div -
+                input(type="date")
+            .inner-reset
+                i.fa-solid.fa-rotate-left
+                div Xóa bộ lọc
+        .section-5 
+            .inner-action 
+                select 
+                    option -- Hành động --
+                    option Hành động 
+                div Áp dụng
+            .inner-search 
+                i.fa-solid.fa-magnifying-glass
+                input(type="text" placeholder="Tìm kiếm")
+
+        .table-1.table-thong-tin-lh
+            table 
+                thead 
+                    tr 
+                        th.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-1(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-1"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        th.full-name 
+                            div Họ tên
+                        th.email
+                            div Email
+                        th.date-create
+                            div Ngày tạo
+                        th.action
+                            div Hành động
+                tbody 
+                    tr 
+                        td.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-2(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-2"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        td.full-name 
+                            div Lê Văn A
+                        td.email
+                            div levana@gmail.com
+                        td.date-create 
+                            div 16:40 - 12/12/2024
+                        td.action
+                            .inner-list 
+                                div 
+                                    i.fa-solid.fa-trash-can
+                    tr 
+                        td.check-box
+                            .checkbox-wrapper-23
+                                input#check-23-2(type="checkbox")
+                                label(
+                                    style="--size: 20px" 
+                                    for="check-23-2"
+                                    )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                        td.full-name 
+                            div Lê Văn A
+                        td.email
+                            div levana@gmail.com
+                        td.date-create 
+                            div 16:40 - 12/12/2024
+                        td.action
+                            .inner-list 
+                                div 
+                                    i.fa-solid.fa-trash-can
+        .section-6 
+            div Hiển thị 1 - 9 của 78
+            select 
+                option Trang 1
+                option Trang 2
+                option Trang 3
+                option Trang 4
+
+
+                        
