@@ -3,6 +3,10 @@
   .checkbox-wrapper-23 *:before {
     box-sizing: border-box;
   }
+   .checkbox-wrapper-23 svg {
+    width: 100%;
+    height: 100%;
+  }
   .checkbox-wrapper-23 input {
     position: absolute;
     opacity: 0;

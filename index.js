@@ -15,6 +15,7 @@ app.set('view engine', 'pug')
 // file tĩnh
 app.use(express.static(path.join(__dirname,'public')))
 
+app.use(express.json());
 
 app.locals.pathAdmin=variableconfig.pathAdmin;
 

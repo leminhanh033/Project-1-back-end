@@ -1,4 +1,5 @@
 extends ../layout/page-layout.pug
+include ../mixin/checkbox.pug
 
 block main
   .page-layout
@@ -14,14 +15,7 @@ block main
           input#password-input.pass(type="password", name="password")
         .inner-line 
           .remember-password 
-            .checkbox-wrapper-23
-              input#check-23(type="checkbox")
-              label(
-                style="--size: 24px" 
-                for="check-23"
-                )
-                svg(viewBox="0,0,50,50")
-                  path(d="M5 30 L 20 45 L 45 5")
+            +checkbox("check-box-remember-password")
             span Nhớ mật khẩu
           .forget-password 
             a(href=`/${pathAdmin}/account/forgot-password`) Quên mật khẩu?

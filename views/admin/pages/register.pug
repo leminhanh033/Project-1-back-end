@@ -1,4 +1,5 @@
 extends ../layout/page-layout.pug
+include ../mixin/checkbox.pug
 
 block main
  .page-layout
@@ -8,23 +9,16 @@ block main
       form#register-form.inner-block 
         .inner-item
             label(for="fullname") Họ tên
-            input(type="text", id="fullname", placeholder="Ví dụ: Lê Văn A")
+            input(type="text", id="fullname",name="fullname" placeholder="Ví dụ: Lê Văn A")
         .inner-item
           label(for="email") Email
           input(type="email", id="email-input", name="email", placeholder="Ví dụ: levana@gmail.com")
         .inner-item
           label(for="password") Mật khẩu
           input.pass(type="password", id="password-input",name="password")
-        .inner-line           
-          .checkbox-wrapper-23
-            input#check-23(type="checkbox")
-            label(
-              style="--size: 24px" 
-              for="check-23"
-              )
-              svg(viewBox="0,0,50,50")
-                path(d="M5 30 L 20 45 L 45 5")
-            label(for="check-23") Tôi chấp nhận các điều khoản và điều kiện
+        .inner-item.inner-check-box 
+          +checkbox("checkbox-register-admin")
+          label Tôi chấp nhận các điều khoản và điều kiện
         button Đăng Ký
         .create 
           span Bạn đã có tài khoản?  

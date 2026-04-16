@@ -1,3 +1,16 @@
+// const { pathAdmin } = require("../../../configs/variable.config");
+
+//sider
+let sider=document.querySelector(".body .sider");
+if(sider){
+    let sideritem=sider.querySelectorAll("a");
+    sideritem.forEach((item)=>{
+        if(item.getAttribute("href")==window.location.pathname){
+            item.classList.add("action");
+        }
+    });
+}
+
 // trang-tong-quan sider
 let buttonmenu=document.querySelector(".header .inner-logo .menu")
 if(buttonmenu){    
@@ -112,7 +125,8 @@ if(chart){
 const loginform=document.querySelector('#email-login-form');
 if(loginform){
     const validator = new JustValidate('#email-login-form');
-    validator.addField('#email-input', [
+    validator
+    .addField('#email-input', [
     {
         rule: 'required',
         errorMessage:"Vui lòng nhập email của bạn"
@@ -130,9 +144,26 @@ if(loginform){
     ])
     .onSuccess((event)=>{
         const email=event.target.email.value;
-        console.log(email);
-        const pass=event.target.password.value;
-        console.log(pass);
+        const password=event.target.password.value;
+        const account={
+            email:email,
+            password:password,
+        }
+        console.log(account);
+        fetch(`/${pathAdmin}/account/login`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+            },  
+            body:JSON.stringify(account),
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            alert(data.message);
+            if(data.code=="success"){
+                window.location.href=`/${pathAdmin}/dashboard`;
+            }
+        })
     })
 }
 
@@ -141,7 +172,8 @@ if(loginform){
 const registerform=document.querySelector('#register-form');
 if(registerform){
     const validator = new JustValidate('#register-form');
-    validator.addField('#fullname', [
+    validator
+    .addField('#fullname', [
     {
         rule: 'required',
         errorMessage:"Vui lòng nhập họ tên của bạn"
@@ -183,17 +215,39 @@ if(registerform){
         errorMessage:"Mật khẩu cần ít nhất 1 chữ số"
     },
     ])
-    .addField('#check-23',[
+    .addField('#checkbox-register-admin',[
         {
             rule: 'required',
             errorMessage:"Bạn phải đồng ý với các điều khoản và điều kiện"
         },
     ])
     .onSuccess((event)=>{
+        
+        const fullname=event.target.fullname.value;
         const email=event.target.email.value;
-        console.log(email);
-        const pass=event.target.password.value;
-        console.log(pass);
+        const password=event.target.password.value;
+        const registerInform={
+            fullname:fullname,
+            email:email,
+            password:password,
+            status:"pending",
+        }
+        fetch(`/${pathAdmin}/account/register`,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify(registerInform),
+        })
+        .then (res=>res.json())
+        .then(data=>{
+            if(data.code=="error")
+                alert(data.message);
+            else if(data.code=="success"){
+                alert(data.message);
+                window.location.href=`/${pathAdmin}/account/login`;
+            }
+        })
     })
 }
 

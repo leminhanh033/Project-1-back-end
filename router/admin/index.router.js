@@ -14,6 +14,7 @@ router.use("/dashboard",dashboard);
 router.use("/category",category);
 router.use ("/tour",tour);
 router.use ("/order",order);
+router.use ("/user",user);
 router.use ("/setting",setting);
 router.use("/profile",profile);
 

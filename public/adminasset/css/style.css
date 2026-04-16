@@ -20,6 +20,11 @@ a{
     min-height:100vh;
     padding:50px 0;
 }
+.page-layout input{
+    font-weight:600;
+    font-size:18px;
+    color:#202224;
+}
 .page-layout .inner-wrap{
     margin-left:auto;
     margin-right:auto;
@@ -70,13 +75,22 @@ a{
     font-size:18px;
     color:#A6A6A6;
 }
-.page-layout .inner-line {
+.page-layout .inner-block .inner-line {
     display:flex;
     align-items: center;
     justify-content: space-between;
+    opacity: 0.6;
+}
+.page-layout .inner-block .inner-check-box{
+    flex-direction: row;
+}
+.page-layout .inner-block .inner-check-box input{
+    width: 24px;
+    height: 24px;
 }
 .page-layout .inner-line .remember-password{
     display:flex;
+    gap:5px;
     align-items: center;
 }
 .page-layout .inner-line .checkbox-wrapper-23{
@@ -326,6 +340,9 @@ a{
 .body .sider .action, .body .sider a:hover{
     background-color: #4880FF;
     border-radius: 6px;
+}
+.body .sider a:hover{
+    opacity: 0.9;
 }
 .body .sider .action i,.body .sider .action div,.body .sider a:hover i,.body .sider a:hover div{
     color:white
@@ -1460,3 +1477,9 @@ a{
     color:#396AFF;
 }
 /* end section 11 */
+
+.page-layout .checkbox-wrapper-23 .just-validate-error-label{
+    position: absolute;
+    margin-top: 5px;
+    width: 100%;
+}
