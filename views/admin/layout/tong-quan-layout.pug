@@ -14,6 +14,8 @@ html(lang="en")
         href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"
         rel="stylesheet"
     )
+    script.
+      const pathAdmin='#{pathAdmin}'
   body 
     .header 
         .inner-logo 
@@ -59,7 +61,7 @@ html(lang="en")
                 a(href=`/${pathAdmin}/profile`) 
                     i.fa-regular.fa-user
                     div Thông tin cá nhân
-                a(href="#") 
+                a.logoutButton(href="#") 
                     i.fa-solid.fa-power-off
                     div Đăng xuất
             .overlay

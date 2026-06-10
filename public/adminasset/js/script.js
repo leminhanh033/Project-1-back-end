@@ -10,6 +10,24 @@ if(sider){
         }
     });
 }
+// Nút đăng xuất
+let logoutButton=document.querySelector(".logoutButton");
+if(logoutButton){
+    logoutButton.addEventListener("click",()=>{
+        fetch(`/${pathAdmin}/account/logout`,{
+            method:"POST",
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            if(data.code=="error"){
+                allert(data.message);
+            }
+            else if (data.code=="success"){
+                window.location.href=`/${pathAdmin}/account/login`;
+            }
+        })
+    })
+}
 
 // trang-tong-quan sider
 let buttonmenu=document.querySelector(".header .inner-logo .menu")
@@ -145,11 +163,12 @@ if(loginform){
     .onSuccess((event)=>{
         const email=event.target.email.value;
         const password=event.target.password.value;
+        const remmeberpass=event.target.querySelector('#check-box-remember-password').checked;
         const account={
             email:email,
             password:password,
+            rememberpassword:remmeberpass,
         }
-        console.log(account);
         fetch(`/${pathAdmin}/account/login`,{
             method:"POST",
             headers: {

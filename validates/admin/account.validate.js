@@ -57,6 +57,7 @@ module.exports.login=async(req,res,next)=>{
     .messages({
       "string.empty":"Vui lòng nhập mật khẩu của bạn"
     }),
+    rememberpassword:Joi.boolean().required()
   })
   try {
     const value = await schema.validateAsync(req.body);

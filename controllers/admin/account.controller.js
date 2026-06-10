@@ -37,7 +37,7 @@ module.exports.registerPost=async(req, res)=>{
 }
 
 module.exports.loginPost=async(req,res)=>{  
-  const {email,password}=req.body;
+  const {email,password,rememberpassword}=req.body;
   const emailList=await accountmodel.find({email:email});
   if(emailList.length==0){
     res.json({
@@ -69,8 +69,9 @@ module.exports.loginPost=async(req,res)=>{
         }, process.env.COOKIE_ACCOUNT
         ,{ expiresIn: "1d" });
         res.cookie("loginID",token,{
-          maxAge:1*24*60*60*1000,
+          maxAge:rememberpassword?7*24*60*60*1000:1*24*60*60*1000,
           httpOnly:true,
+          sameSite: "strict",
         })
         res.json({
           code:"success",
@@ -104,4 +105,12 @@ module.exports.enterOTP=async(req, res)=>{
 
 module.exports.resetpassword=async(req, res)=>{
   res.render('admin/pages/reset-password.pug',{title:"Trang đổi mật khẩu"})
+}
+
+module.exports.logoutPost=async(req,res)=>{
+  res.clearCookie("loginID");
+  res.json({
+    code:"success",
+    message:"Đăng xuất thành công"
+  })
 }

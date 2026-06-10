@@ -9,14 +9,16 @@ const user=require("./user.router.js");
 const setting=require("./setting.router.js");
 const profile=require("./profile.router.js");
 
+const {checkLogin}=require("../../middlewares/admin/checkLogin.middleware.js");
+
 router.use("/account",account);
-router.use("/dashboard",dashboard);
-router.use("/category",category);
-router.use ("/tour",tour);
-router.use ("/order",order);
-router.use ("/user",user);
-router.use ("/setting",setting);
-router.use("/profile",profile);
+router.use("/dashboard",checkLogin,dashboard);
+router.use("/category",checkLogin,category);
+router.use ("/tour",checkLogin,tour);
+router.use ("/order",checkLogin,order);
+router.use ("/user",checkLogin,user);
+router.use ("/setting",checkLogin,setting);
+router.use("/profile",checkLogin,profile);
 
 router.use((req,res)=>{
   res.render("admin/pages/404-not-found",{title:"404 Not Found"});

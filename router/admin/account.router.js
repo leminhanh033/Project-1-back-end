@@ -5,6 +5,9 @@ const accountValidate=require("../../validates/admin/account.validate.js");
 router.get('/login',accountController.login);
 router.post('/login',accountValidate.login,accountController.loginPost);
 
+router.post('/logout',accountController.logoutPost);
+
+
 router.get('/register',accountController.register);
 router.post('/register',accountValidate.register,accountController.registerPost);
 

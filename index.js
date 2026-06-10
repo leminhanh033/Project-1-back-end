@@ -8,9 +8,13 @@ const variableconfig =require("./configs/variable.config.js");
 
 connectDatabase();
 
+//cookie-parser
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 app.set('views', path.join(__dirname,'views'))
 app.set('view engine', 'pug')
+
 
 // file tĩnh
 app.use(express.static(path.join(__dirname,'public')))
@@ -18,6 +22,7 @@ app.use(express.static(path.join(__dirname,'public')))
 app.use(express.json());
 
 app.locals.pathAdmin=variableconfig.pathAdmin;
+global.pathAdmin=variableconfig.pathAdmin
 
 //router
 const clientrouter=require("./router/client/index.router.js");
