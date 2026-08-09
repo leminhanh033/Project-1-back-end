@@ -1,0 +1,18 @@
+mixin breadcumb(data)
+  img(
+    alt="" 
+    src=data.avatar
+    )
+  .inner-wrap
+    div #{data.name}
+    .text
+      a(href="/")
+        div Trang Chủ
+      i.fa-solid.fa-angles-right
+      if(data.categoryParent&&data.categoryParent.length>0)
+        each item in data.categoryParent
+          a(href=item.path)
+            div #{item.name}
+          i.fa-solid.fa-angles-right
+      a(href=data.path)
+        div #{data.name}

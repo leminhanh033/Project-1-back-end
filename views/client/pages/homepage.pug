@@ -1,4 +1,6 @@
 extends ../layouts/default 
+include ../partial/tourBlock.pug
+
 block main 
   .section1
     .container
@@ -32,6 +34,7 @@ block main
               input(
                 placeholder="Bạn muốn đi đâu?" 
                 type="text"
+                filter="fromDestination"
                 )
               img.down(
                 alt="" 
@@ -75,102 +78,7 @@ block main
                     .item-content
                       div Hà Nội
                       div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Sapa
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Thái Lan
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nha Trang
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Bali
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
-                  .item-suggest
-                    img(
-                      alt="" 
-                      src="clientasset/img/city-river.png"
-                      )
-                    .item-content
-                      div Nhật Bản
-                      div 50 tours
+                  
           .inner-input-amount.inner-item
             .inner-input-title
               img(
@@ -180,6 +88,7 @@ block main
               input(
                 placeholder="Số lượng" 
                 type="text"
+                filter="quantity"
                 )
               img.down(
                 alt="" 
@@ -212,13 +121,14 @@ block main
                 )
               input(
                 placeholder="Lịch khởi hành" 
-                type="text"
+                type="date"
+                filter="departureDate"
                 )
               img.down(
                 alt="" 
                 src="clientasset/img/down.svg"
                 )
-          button
+          button(filterButton)
             i.fa-solid.fa-magnifying-glass
             span Tìm Kiếm
   .section2(
@@ -255,202 +165,13 @@ block main
               span đ
         .swiper.inner-swiper
           .swiper-wrapper
-            .inner-item-block-2.swiper-slide
-              img(
-                alt="" 
-                src="clientasset/img/sydney.png"
-                )
-              div
-                i.fa-solid.fa-bolt
-                span Giảm -30%
-              div Hà Nội - Lào Cai - SaPa 4N3Đ
-              div
-                div
-                  span
-                    del 13.650.000
-                  span đ
-                div
-                  span 2.590.000
-                  span đ
-              div
-                div
-                  | Mã Tour:
-                  b 123456789
-                div
-                  | Ngày Khởi Hành:
-                  b 22/07/2024
-                div
-                  | Thời Gian:
-                  b 10 Ngày 9 Đêm
-              div
-                div
-                  div
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-regular.fa-star
-                  span (5)
-                div
-                  span Số chỗ còn:
-                  span 10
-            .inner-item-block-2.swiper-slide
-              img(
-                alt="" 
-                src="clientasset/img/sydney.png"
-                )
-              div
-                i.fa-solid.fa-bolt
-                span Giảm -30%
-              div Hà Nội - Lào Cai - SaPa 4N3Đ
-              div
-                div
-                  span
-                    del 13.650.000
-                  span đ
-                div
-                  span 2.590.000
-                  span đ
-              div
-                div
-                  | Mã Tour:
-                  b 123456789
-                div
-                  | Ngày Khởi Hành:
-                  b 22/07/2024
-                div
-                  | Thời Gian:
-                  b 10 Ngày 9 Đêm
-              div
-                div
-                  div
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-regular.fa-star
-                  span (5)
-                div
-                  span Số chỗ còn:
-                  span 10
-            .inner-item-block-2.swiper-slide
-              img(
-                alt="" 
-                src="clientasset/img/sydney.png"
-                )
-              div
-                i.fa-solid.fa-bolt
-                span Giảm -30%
-              div Hà Nội - Lào Cai - SaPa 4N3Đ
-              div
-                div
-                  span
-                    del 13.650.000
-                  span đ
-                div
-                  span 2.590.000
-                  span đ
-              div
-                div
-                  | Mã Tour:
-                  b 123456789
-                div
-                  | Ngày Khởi Hành:
-                  b 22/07/2024
-                div
-                  | Thời Gian:
-                  b 10 Ngày 9 Đêm
-              div
-                div
-                  div
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-regular.fa-star
-                  span (5)
-                div
-                  span Số chỗ còn:
-                  span 10
-            .inner-item-block-2.swiper-slide
-              img(
-                alt="" 
-                src="clientasset/img/sydney.png"
-                )
-              div
-                i.fa-solid.fa-bolt
-                span Giảm -30%
-              div Hà Nội - Lào Cai - SaPa 4N3Đ
-              div
-                div
-                  span
-                    del 13.650.000
-                  span đ
-                div
-                  span 2.590.000
-                  span đ
-              div
-                div
-                  | Mã Tour:
-                  b 123456789
-                div
-                  | Ngày Khởi Hành:
-                  b 22/07/2024
-                div
-                  | Thời Gian:
-                  b 10 Ngày 9 Đêm
-              div
-                div
-                  div
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-regular.fa-star
-                  span (5)
-                div
-                  span Số chỗ còn:
-                  span 10
-            .inner-item-block-2.swiper-slide
-              img(
-                alt="" 
-                src="clientasset/img/sydney.png"
-                )
-              div
-                i.fa-solid.fa-bolt
-                span Giảm -30%
-              div Hà Nội - Lào Cai - SaPa 4N3Đ
-              div
-                div
-                  span
-                    del 13.650.000
-                  span đ
-                div
-                  span 2.590.000
-                  span đ
-              div
-                div
-                  | Mã Tour:
-                  b 123456789
-                div
-                  | Ngày Khởi Hành:
-                  b 22/07/2024
-                div
-                  | Thời Gian:
-                  b 10 Ngày 9 Đêm
-              div
-                div
-                  div
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-solid.fa-star
-                    i.fa-regular.fa-star
-                  span (5)
-                div
-                  span Số chỗ còn:
-                  span 10
+            each item in tourInfor.tourSection2
+              .inner-item-block-2.swiper-slide
+                +tourBlock(item) 
+            
+           
           .swiper-pagination
+  
   .section3(
     data-aos-delay="100" 
     data-aos-duration="2000" 
@@ -491,171 +212,20 @@ block main
               src="clientasset/img/section3-img3.png"
               )
         .swiper-pagination
+  
   .section4(
     data-aos-delay="100" 
     data-aos-duration="2000" 
     data-aos="fade-up"
     )
     .container
-      .text-title Tour Trong Nước
+      .text-title #{tourInfor.categorySection4.name}
       .inner-wrap
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-      a.button(href="#")
+        each item,index in tourInfor.tourSection4
+          if(index<4)
+            .inner-item-block-2
+              +tourBlock(item)
+      a.button(href=`/category/${tourInfor.categorySection4.slug}`)
         button Xem tất cả
   .section5(
     data-aos-delay="100" 
@@ -673,165 +243,14 @@ block main
     data-aos="fade-up"
     )
     .container
-      .text-title Tour Nước Ngoài
+      .text-title #{tourInfor.categorySection6.name}
       .inner-wrap
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-        .inner-item-block-2
-          img(
-            alt="" 
-            src="clientasset/img/sydney.png"
-            )
-          div
-            i.fa-solid.fa-bolt
-            span Giảm -30%
-          div Hà Nội - Lào Cai - SaPa 4N3Đ
-          div
-            div
-              span
-                del 13.650.000
-              span đ
-            div
-              span 2.590.000
-              span đ
-          div
-            div
-              | Mã Tour:
-              b 123456789
-            div
-              | Ngày Khởi Hành:
-              b 22/07/2024
-            div
-              | Thời Gian:
-              b 10 Ngày 9 Đêm
-          div
-            div
-              div
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-solid.fa-star
-                i.fa-regular.fa-star
-              span (5)
-            div
-              span Số chỗ còn:
-              span 10
-      a.button(href="#")
+        each item,index in tourInfor.tourSection6
+          if(index<4)
+            .inner-item-block-2
+              +tourBlock(item)
+          
+      a.button(href=`/category/${tourInfor.categorySection6.slug}`)
         button Xem tất cả
   .section7(
     data-aos-delay="100" 

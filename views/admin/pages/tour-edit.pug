@@ -1,0 +1,155 @@
+extends ../layout/tong-quan-layout.pug
+include ../mixin/checkbox.pug
+include ../mixin/categoryTree.pug
+
+block main
+    .content
+        .inner-title Chỉnh sửa tour
+            if(accountLogin.listRights.includes("edit-tour"))
+                form#touredit.section-8(tourID=tourDetail._id)
+                    .inner-group 
+                        label(for="tour") Tên tour *
+                        input(type="text" id="tour" value=tourDetail.name) 
+                    .inner-group 
+                        label(for="name") Danh mục
+                        select(id="category")
+                            +categoryTree(category,0,tourDetail.category)            
+                    .inner-group 
+                        label(for="position") Vị trí
+                        input(type="number" id="position" value=tourDetail.position)
+                    .inner-group 
+                        label(for="state") Trạng thái
+                        select#state(name="")
+                            option(value="active" selected=tourDetail.state=="active") Hoạt động
+                            option(value="inactive" selected=tourDetail.state=="inactive") Ngừng hoạt động
+                            option(value="pending" selected=tourDetail.state=="pending") Chờ duyệt
+                    .inner-group.two-col 
+                        div.avatar 
+                            label(for="avatar") Ảnh đại diện
+                            div.avartar-file
+                                input(type="file" id="avatar-tour" filepond accept="image/*" avatar=tourDetail.avatar)
+                    .inner-group.two-col 
+                        div.avatar 
+                            label(for="images") Ảnh mô tả tour
+                            div.avartar-file(filepond-multi images=tourDetail.images)
+                                input(
+                                    type="file" 
+                                    id="images" 
+                                    filepond-multi-image 
+                                    accept="image/*" 
+                                    multiple
+                                )
+                    .inner-group.price 
+                        div Giá cũ
+                        .inner-price 
+                            .inner-item 
+                                span Người lớn
+                                input(type="number" id="oldAdult" value=tourDetail.oldAdult)
+                            .inner-item 
+                                span Trẻ em
+                                input(type="number" id="oldChild" value=tourDetail.oldChild)
+                            .inner-item 
+                                span Em bé
+                                input(type="number" id="oldBaby" value=tourDetail.oldBaby)
+                    .inner-group.price 
+                        div Giá mới
+                        .inner-price 
+                            .inner-item 
+                                span Người lớn
+                                input(type="number" id="newAdult" value=tourDetail.newAdult)
+                            .inner-item 
+                                span Trẻ em
+                                input(type="number" id="newChild" value=tourDetail.newChild)
+                            .inner-item 
+                                span Em bé
+                                input(type="number" id="newBaby" value=tourDetail.newBaby)
+                    .inner-group.price 
+                        div Còn lại
+                        .inner-price 
+                            .inner-item 
+                                span Người lớn
+                                input(type="number" id="remainAdult" value=tourDetail.remainAdult)
+                            .inner-item 
+                                span Trẻ em
+                                input(type="number" id="remainChild" value=tourDetail.remainChild)
+                            .inner-item 
+                                span Em bé
+                                input(type="number" id="remainBaby" value=tourDetail.remainBaby)
+                    .inner-group.destination 
+                        div Những địa điểm có tour 
+                        .inner-destination
+                            each item in provinces
+                                .inner-item(id="destination")  
+                                    .checkbox-wrapper-23
+                                        input(
+                                            type="checkbox" 
+                                            id=item._id 
+                                            checkItem 
+                                            value=item._id
+                                            checked=tourDetail.destination.includes(item._id)
+                                        )
+                                        label(
+                                            style=`--size: 20px;background-color: white`
+                                            for=item._id
+                                        )
+                                            svg(viewBox="0,0,50,50")
+                                                path(d="M5 30 L 20 45 L 45 5")               
+                                    span #{item.name}                    
+                    .inner-group     
+                        label(for="time") Thời gian
+                        input(type="text" id="time" value=tourDetail.time)
+                    .inner-group 
+                        label(for="vehicle") Phương tiện
+                        input(type="text" id="vehicle" value=tourDetail.vehicle)
+                    .inner-group 
+                        label(for="departureDate") Ngày khởi hành
+                        input(type="date" id="departureDate" value=tourDetail.departureDate)
+                    .inner-group.two-col 
+                        div.des
+                            label(for="infor") Thông tin tour
+                            textarea#infor(name="infor" textarea-mce) #{tourDetail.information}
+                    .inner-list.two-col 
+                        .inner-list-title Lịch trình tour
+                        .inner-list-main
+                            if (tourDetail.schedule.length>0)
+                                each desc in tourDetail.schedule 
+                                    .inner-schedule-item#schedule
+                                        .inner-header 
+                                            div.square.handle
+                                                img(src="/adminasset/image/add.svg", alt="")
+                                            div.input
+                                                input.schedule-name(type="text" value=desc.name)
+                                            div.square.rubbish-remove
+                                                img(src="/adminasset/image/trash.svg", alt="")
+                                            div.square.button-hidden
+                                                i.fa-solid.fa-angle-down
+                                        .body
+                                            textarea.schedule-desc(textarea-mce) #{desc.desc}
+                            else 
+                                .inner-schedule-item#schedule
+                                    .inner-header 
+                                        div.square.handle
+                                            img(src="/adminasset/image/add.svg", alt="")
+                                        div.input
+                                            input.schedule-name(type="text")
+                                        div.square.rubbish-remove
+                                            img(src="/adminasset/image/trash.svg", alt="")
+                                        div.square.button-hidden
+                                            i.fa-solid.fa-angle-down
+                                    .body
+                                        textarea.schedule-desc(textarea-mce)
+
+                        .inner-button.add-schedule
+                            button + Thêm lich trình
+                    .inner-group.two-col
+                        div.button
+                            button Cập nhật
+                    .inner-group.two-col
+                        div.return
+                            a(href=`/${pathAdmin}/tour/manage`) Quay lại danh sách
+            
+            else 
+                div.unable-access Không có quyền truy cập
+
+
+                        

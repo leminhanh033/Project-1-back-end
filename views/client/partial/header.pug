@@ -3,13 +3,13 @@
     .inner-wrap
       .item1
         i.fa-solid.fa-phone
-        span 0123.456.789
+        span #{websiteInfor.phone}
       .item2
         i.fa-solid.fa-envelope
-        span contact@28travel.com
+        span #{websiteInfor.email}
       .item3
         i.fa-solid.fa-building
-        span Số 123, đường ABC, thành phố XYZ
+        span #{websiteInfor.address}
 .header
   .container
     .inner-wrap-header
@@ -18,47 +18,43 @@
           alt="" 
           src="/clientasset/img/Menu.png"
           )
-      .button-logo
+      a.button-logo(href="/")
         img(
           alt="" 
-          src="/clientasset/img/Logo.png"
+          src=websiteInfor.avatar,
           )
       .inner-menu
         .beside-menu
           .content
-            a(href="#") Trang chủ
-          .inner-item.content
-            .inner-title
-              a(href="#") Tour Trong Nước
-              i.fa-solid.fa-caret-down
-            ul
-              li
-                a(href="#") Tour Miền Bắc
-              li
-                a(href="#") Tour Miền Trung
-              li
-                a(href="#") Tour Miền Nam
-              li
-                a(href="#") Tour Xuyên Việt
-          .inner-item.content
-            .inner-title
-              a(href="#") Tour nước ngoài
-              i.fa-solid.fa-caret-down
-            ul
-              li
-                a(href="#") Tour Châu Á
-              li
-                a(href="#") Tour Châu Âu
-              li
-                a(href="#") Tour Châu Mỹ
-              li
-                a(href="#") Tour Châu Úc
+            a(href="/") Trang chủ
+
+          each item,index in categoryTour
+            if(index<2)
+              .inner-item.content
+                .inner-title
+                  a(href=`/category/${item.slug}`) #{item.name}
+                  i.fa-solid.fa-caret-down
+                ul
+                  each element in item.tour
+                    li
+                      a(href=`/tour/detail/${element.slug}`) #{element.name}  
+          if categoryTour.length>2
+            div.inner-item.content 
+              .inner-title
+                a(href="#") Xem thêm
+                i.fa-solid.fa-caret-down 
+              ul
+                each item,index in categoryTour
+                  if(index>=2)                    
+                    li
+                      a(href=`/category/${item.slug}`) #{item.name}
+
           .content
             a(href="#") Tin tức
           .content
             a(href="#") Liên hệ
         .overlay
-      .cart
+      a.cart(href= `/cart`)
         img(
           alt="" 
           src="/clientasset/img/Icon.jpg"
@@ -68,4 +64,4 @@
             alt="" 
             src="/clientasset/img/tam-giac-nhon.svg"
             )
-          | 1
+          div.order-number 0

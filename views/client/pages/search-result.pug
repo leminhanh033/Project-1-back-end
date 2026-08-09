@@ -1,0 +1,123 @@
+extends ../layouts/default 
+include ../partial/tourBlock.pug
+include ../partial/breadcumb.pug
+
+block main
+
+  if(categoryDetail)
+    .breadcumb
+      +breadcumb(categoryDetail)
+  .search-result 
+    .inner-title #{title}
+
+  .main    
+    .inner-left
+      .inner-wrap
+        .first-part
+          div Bộ Lọc
+          i.fa-solid.fa-filter
+        .left-second-part
+          div Điểm đi
+          select(name="" filter="fromDestination")
+            option(value="") -- Chọn điểm đi --
+            each item in province
+              option(
+                value=item._id
+                selected=item._id==filter.fromDestination
+              ) #{item.name}
+        .left-second-part
+          div Điểm đến
+          select(name="" filter="toDestination")
+            option(value="") -- Chọn điểm đến --
+            each item in province
+              option(
+                value=item.name
+                selected=item.name==filter.toDestination
+              ) #{item.name}
+        .left-second-part
+          div Ngày khởi hành
+          input(type="date" filter="departureDate" value=filter.departureDate)
+        .third-part
+          .inner-part-title Số Lượng Hành Khách
+          .box
+            div Người lớn:
+            input(
+              placeholder="0" 
+              type="number"
+              filter="adult"
+              value=filter.adult
+              )
+          .box
+            div Trẻ em:
+            input(
+              placeholder="0" 
+              type="number"
+              filter="children"
+              value=filter.children
+              )
+          .box
+            div Em bé:
+            input(
+              placeholder="0" 
+              type="number"
+              filter="baby"
+              value=filter.baby
+              )
+        .left-second-part
+          div Mức giá
+          select(name="" filter="price")
+            option(value="") -- Chọn khoảng giá --
+            option(value="0-1000000" selected=filter.price=="0-1000000") Dưới 1tr
+            option(value="1000000-3000000" selected=filter.price=="1000000-3000000") Từ 1tr đến 3tr
+            option(value="3000000-6000000" selected=filter.price=="3000000-6000000") Từ 3tr đến 6tr
+            option(value="6000000-10000000" selected=filter.price=="6000000-10000000") Từ 6tr đến 10tr
+            option(value="10000000" selected=filter.price=="10000000") Trên 10tr
+        button(
+          filterButton
+        ) Áp Dụng
+      .overlay
+   
+    .inner-right
+      if(categoryDetail!={})
+        .content-title
+          .inner-title #{categoryDetail.name}
+          p !{categoryDetail.description}
+      .second-part
+        .inner-sort
+          .inner-sort-title Sắp xếp :
+          .tag
+            div Giá tăng dần
+            i.fa-solid.fa-square-arrow-up-right
+          .tag
+            div Giá giảm dần
+            i.fa-solid.fa-square-arrow-up-right.rotate
+          .tag.special
+            div Khuyến Mãi Hot
+            i.fa-solid.fa-tag
+          .tag
+            div Xem Nhiều
+            i.fa-solid.fa-eye
+        .all
+          div
+            | Tất cả: 
+            b #{numberTour} Tour
+          .filter
+            div Bộ Lọc
+            i.fa-solid.fa-filter
+      .list
+        each item in tourList
+          .inner-item-block-2
+            +tourBlock(item)
+          
+      .inner-breadcumb
+        i.fa-solid.fa-angles-left
+        -for(let i=pagination.start;i<=pagination.numberPage;i++)
+          if(i<pagination.start+4)
+            span.page(
+              page=i
+              class=i==pagination.currentPage?"active":""
+            ) #{i}
+        i.fa-solid.fa-angles-right 
+    
+    
+        

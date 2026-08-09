@@ -9,32 +9,24 @@ block main
                 label(for="name") Tên nhóm quyền *
                 input(type="text" id="name" name="name")
             .inner-group 
-                label(for="short-des") Mô tả ngắn
-                input(type="text" id="short-des")
+                label(for="desc") Mô tả ngắn
+                input(type="text" id="desc")
           
             .inner-group.destination 
                 div Phân quyền
                 .inner-destination
-                    .inner-item                     
-                        include ../mixin/checkbox.pug
-                        +checkbox("check-23-0", "20px")
-                        span Xem trang Tổng quan
-                    .inner-item                     
-                        include ../mixin/checkbox.pug
-                        +checkbox("check-23-1", "20px")
-                        span Xem danh mục
-                    .inner-item                     
-                        include ../mixin/checkbox.pug
-                        +checkbox("check-23-2", "20px")
-                        span Tạo danh mục
-                    .inner-item                     
-                        include ../mixin/checkbox.pug
-                        +checkbox("check-23-3", "20px")
-                        span Sửa danh mục
-                    .inner-item                     
-                        include ../mixin/checkbox.pug
-                        +checkbox("check-23-4", "20px")
-                        span Xóa danh mục
+                    each item,index in listRights
+                        .inner-item(rights)                 
+                            .checkbox-wrapper-23
+                                input(type="checkbox" id="check-"+index value=item.value)
+                                label(
+                                    style=`--size:20px ;background-color: white`
+                                    for="check-"+index
+                                )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                            span #{item.label}
+                    
             .inner-group.two-col
                 div.button
                     button Tạo mới

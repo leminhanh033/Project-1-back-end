@@ -8,6 +8,9 @@
     padding: 0;
     font-family: "Lexend Deca", sans-serif;
 }
+button{
+    cursor: pointer;
+}
 a{
     text-decoration: none;
 }
@@ -142,6 +145,8 @@ body{
     display:flex;
     gap: 10px;
     position:relative;
+    justify-content: center;
+    align-items: center;
 }
 
 .header .inner-menu .inner-title {
@@ -176,7 +181,8 @@ body{
     border-radius: 0px 0px 10px 10px;
     background-color: #FFFFFF;
     width:280px;
-    height:176px;
+    max-height:176px;
+    overflow: auto;
 }
 .header .inner-menu .inner-item ul li a:hover{
     background-color: #4502C7;
@@ -199,7 +205,7 @@ body{
     height:100%;
     border: solid 1px rgba(128, 128, 128, 0.5);
     overflow-y: auto;
-     display:flex;
+    display:flex;
     flex-direction: column;
     flex-wrap: wrap;
 }
@@ -228,22 +234,23 @@ body{
 .header .cart div {
     background-color: #FF3904;
     font-weight: 400;
-    font-size:10px;
+    font-size:12px;
     display:flex;
     justify-content: center;
     align-items: center;
-    width:16px;
-    height:14px;
+    width:auto;
+    height:auto;
     border-radius: 3px;
     text-align: center;
     color:white;
     position:relative;
+    padding: 1px 3px;
 }
 .header .cart div img{
     width:4px;
     height:4px;
     position:absolute;
-    top:4.5px;
+    top:8px;
     left:-3px;
 }
 /* responsive */
@@ -261,6 +268,10 @@ body{
     left:-200%;      
     transition: all 0.5s ease;
   }  
+  .header .inner-menu.active .beside-menu{
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
   .header .inner-menu.active .overlay{
     position:absolute;
     top:0;
@@ -276,6 +287,7 @@ body{
   .header .inner-menu .content:hover ul{
     display:none;
     width:100%;
+    max-height: none;
   }
   .header .inner-menu.active div .inner-title{
     width:100%;
@@ -289,6 +301,7 @@ body{
   .header .inner-menu .inner-item.active ul {
     display:block;
     position:static;
+    width:100%;
   }
   .header .inner-menu .inner-item.active i::before{
     content:"\f0d8";
@@ -660,19 +673,23 @@ body{
     font-weight:600;
     font-size:11px;
 }
- .inner-item-block-2>div:nth-of-type(2){
+ .inner-item-block-2 .tour-name{
+    margin-left:16px;
+    margin-right:22px;
+    display: flex;
+    align-items: center;
+    height:49px;
+}
+.inner-item-block-2 .tour-name a{
+    height:100%;
+    width:100%;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;  
     overflow: hidden;
     font-weight: 700;
     font-size:15px;
-    margin-left:16px;
-    margin-right:22px;
-    display:flex;
-    align-items: center;
     color:#25282B;
-    height:49px;
 }
  .inner-item-block-2>div:nth-of-type(3){
     display:flex;
@@ -684,16 +701,13 @@ body{
     font-size:15px;
     color:#52575C;
 }
- .inner-item-block-2>div:nth-of-type(3) div:first-child span:first-child{
+ .inner-item-block-2>div:nth-of-type(3) .oldPrice span:first-child{
     text-decoration: underline;
 }
- .inner-item-block-2>div:nth-of-type(3) div:nth-child(2) span{
+ .inner-item-block-2>div:nth-of-type(3) .newPrice span{
     font-weight:700;
     font-size:15px;
     color:#DA0808;
-}
- .inner-item-block-2>div:nth-of-type(3) div:first-child span:first-child{
-    text-decoration: underline;
 }
 
  .inner-item-block-2>div:nth-of-type(4){
@@ -1433,7 +1447,7 @@ body{
 }
 .main .third-part .box input{
     border:0;
-    width:45px;
+    max-width:150px;
 }
 .main .third-part .box input::placeholder{
     font-weight:500;
@@ -1449,6 +1463,7 @@ body{
     font-weight:500;
     font-size:14px;
     color:white;
+    cursor: pointer;
 }
 .main .inner-left .overlay{
     display:none;
@@ -1512,6 +1527,7 @@ body{
     display:flex;
     gap:6px;
     display:none;
+    cursor: pointer;
 }
 .main .inner-right .all .filter div{
     font-weight:600;
@@ -1544,12 +1560,14 @@ body{
     align-items: center;
     justify-content: center;
     font-size:8px;
+    cursor: pointer;
+
 }
 .main .inner-breadcumb span{
     font-weight:400;
     font-size:14px;
 }
-.main .inner-breadcumb span:first-of-type,.main .inner-breadcumb span:hover,.main .inner-breadcumb i:hover {
+.main .inner-breadcumb span.active,.main .inner-breadcumb span:hover,.main .inner-breadcumb i:hover {
     background-color: #4502C7;
     color:#F8F6EB;
 }
@@ -1828,6 +1846,7 @@ body{
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    gap:20px;
 }
 .section10 .inner-right .inner-section-1 .inner-content .rate .star{
     display:flex;
@@ -1933,6 +1952,10 @@ body{
     color:#5D5E60;
 }
 .section10 .inner-right .total .hl{
+    display:flex;
+    gap:10px;
+}
+.section10 .inner-right .total .hl div{
     font-weight:600;
     font-size:20px;
     color:#4502C7;
@@ -2018,17 +2041,18 @@ body{
     gap:5px;
     align-items: center;
 }
-.section11 .inner-label >div:nth-child(2):hover span,.section11 .inner-label >div:nth-child(2):hover i{
+.section11 .inner-label >div:nth-child(2):hover .return,.section11 .inner-label >div:nth-child(2):hover i{
     color:#4502C7;
     cursor: pointer;
 }
-.section11 .inner-label >div:nth-child(2) span{
+.section11 .inner-label >div:nth-child(2) .return{
     font-weight:400;
     font-size:15px;
     color:#52575C;
 }
 .section11 .inner-label >div:nth-child(2) i{
     color:#A0A4A8;
+    font-size:13px;
     width:9px;
 }
 .section11 .list-product{
@@ -2190,11 +2214,15 @@ body{
     font-weight:400;
     font-size:17px;
     color:#333333;
+    display: flex;
+    gap: 10px;
 }
 .section11 .total .hl{
     font-weight:700;
     font-size:22px;
     color:#4502C7;
+    display: flex;
+    gap: 10px;
 }
 /* responsive */
 @media(max-width:991.98px){
@@ -2386,3 +2414,47 @@ body{
     }
 }
 /* end section12 */
+
+/* Trang kết quả tìm kiếm */
+.search-result{
+    padding-top:60px;
+    padding-right:91px;
+    padding-left:91px;
+}
+.search-result .inner-title{
+    font-weight: 600;
+    font-size: 28px;
+    color: #4502C7;
+}
+/* end Trang kết quả tìm kiếm */
+
+/* section13 */
+.section13 .inner-wrap{
+    width:902px;    
+    margin-left:auto;
+    margin-right:auto;
+    padding:30px 20px;
+    background-color: white;
+    box-shadow: 0px 3.05px 3.81px 0px #00000026;
+    border-radius: 18px;
+    display:flex;
+    flex-direction: column;
+    gap:10px;
+}
+/* end section13 */
+button.payment{
+    width:480px;
+    height:46px;
+    border-radius: 8px;
+    border:0;
+    text-transform: uppercase;
+    background-color: #4502C7;
+    color:white;
+    font-weight:600;
+    font-size:20px;
+    cursor: pointer;
+}
+.button{
+    text-align: center;
+    margin-top: 30px;
+}

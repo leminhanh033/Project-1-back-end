@@ -1,0 +1,25 @@
+extends ../layout/tong-quan-layout.pug
+include ../mixin/categoryTree.pug
+
+block main
+    .content
+        .inner-title #{title}
+        form#homepage.section-8 
+            .inner-group 
+                label(for="name") Danh mục được chọn để hiển thị
+                select(id="category1")
+                    +categoryTree(categoryList,0,homepageInfor.category1)                        
+            .inner-group 
+                label(for="name") Danh mục được chọn để hiển thị
+                select(id="category2")
+                    +categoryTree(categoryList,0,homepageInfor.category2)
+            
+            .inner-group.two-col
+                div.button
+                    button Cập nhật
+            .inner-group.two-col
+                div.return
+                    a(href=`/${pathAdmin}/setting`) Quay lại danh sách
+
+
+                        

@@ -5,26 +5,34 @@ block main
         .inner-title Thông tin cá nhân
         form#individualinfor.section-8 
             .inner-group 
-                label(for="name") Họ tên *
-                input(type="text" id="name" name="name")
+                label(for="fullname") Họ tên *
+                input(type="text" id="fullname" name="fullname" value=account.fullname)
             .inner-group 
                 label(for="email") Email *
-                input(type="email" id="email" name="email")
+                input(type="email" id="email" name="email" value=account.email)
             .inner-group 
                 label(for="phone") Số điện thoại*
-                input(type="text" id="phone" name="phone")
+                input(type="text" id="phone" name="phone" value=account.phone)
             
             .inner-group 
-                label(for="chuc-vu") Chức vụ
-                input(type="text" id="chuc-vu" name="chuc-vu")
+                label(for="roleName") Chức vụ
+                input(type="text" id="roleName" name="roleName" value=account.roleName)
             .inner-group 
-                label(for="inner-nhom-quyen") Nhóm quyền
-                input(type="text" id="inner-nhom-quyen" name="nhom-quyen")
+                label(for="role") Nhóm quyền
+                select#role(name="") 
+                    for element in listRole
+                        option(
+                            value=element._id
+                            selected=element._id==account.role
+                        ) #{element.name}
             .inner-group.two-col
                 div.avatar 
                     label(for="avatar") Ảnh đại diện
                     div.avartar-file
-                        input(type="file" id="avatar" filepond accept="image/*")
+                        input(
+                            type="file" id="avatar" filepond accept="image/*"
+                            avatar=account.avatar
+                        )
             
             .inner-group.two-col
                 div.button

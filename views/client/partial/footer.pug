@@ -10,12 +10,13 @@
         button Đăng Ký Ngay
     .inner-item-2
       .inner-link
-        a(href="#")
+        a(href="/")
           div Trang Chủ
-        a(href="#")
-          div Tour Trong Nước
-        a(href="#")
-          div Tour Nước Ngoài
+        each item,index in categoryTour
+          if(index<2)
+            a(href=`/category/${item.slug}`)
+              div #{item.name}
+          
         a(href="#")
           div Tin Tức
         a(href="#")

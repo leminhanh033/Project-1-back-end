@@ -1,5 +1,6 @@
 var jwt = require('jsonwebtoken');
 const accountmodel=require('../../models/admin/account.model');
+const rolemodel=require('../../models/admin/role.model')
 
 module.exports.checkLogin=async(req,res,next)=>{
   const token =req.cookies.loginID;
@@ -16,8 +17,26 @@ module.exports.checkLogin=async(req,res,next)=>{
     if(!account){
       res.clearCookie("loginID");
       res.redirect(`/${pathAdmin}/account/login`)
+      return;
     }
-  next();
+    
+    req.account=account;
+
+    const roleFormat=await rolemodel.findOne({
+      _id:account.role,
+    });
+    res.locals.accountLogin={
+      id:account.id,
+      fullname:account.fullname,
+      email:account.email,
+      roleFormat:roleFormat ? roleFormat.name : "",
+      avatar:account.avatar,
+      listRights:roleFormat?roleFormat.listRights:[],
+    }
+
+    req.role=roleFormat;
+
+    next();
   } catch(err) {
     res.redirect(`/${pathAdmin}/account/login`)
     return;  

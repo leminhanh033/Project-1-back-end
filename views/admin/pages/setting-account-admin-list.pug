@@ -8,15 +8,17 @@ block main
                 img(src="/adminasset/image/Filter-icon.svg", alt="") 
                 div Bộ lọc
             .inner-item.inner-border 
-                select 
+                select(filter="status") 
                     option Trạng thái
             .inner-date.inner-border 
-                input(type="date")
+                input(type="date" filter="fromDate")
                 div -
-                input(type="date")
+                input(type="date" filter="toDate")
             .inner-item.inner-border 
-                select 
-                    option Nhóm quyền
+                select(filter="role")
+                    option(value="") Nhóm quyền
+                    each element in listRights 
+                        option(value=element._id) #{element.name}
             .inner-reset
                 i.fa-solid.fa-rotate-left
                 div Xóa bộ lọc
@@ -24,11 +26,14 @@ block main
             .inner-action 
                 select 
                     option -- Hành động --
-                    option Hành động
+                    option(value="active") Hoạt động
+                    option(value="inactive") Ngừng hoạt động
+                    option(value="pending") Chờ duyệt 
+                    option(value="delete") Xoá tài khoản
                 div Áp dụng
             .inner-search 
                 i.fa-solid.fa-magnifying-glass
-                input(type="text" placeholder="Tìm kiếm")
+                input(type="text" placeholder="Tìm kiếm" search)
             a.create-button(href=`/${pathAdmin}/setting/account-admin/create`)  + Tạo mới
                             
         .table-1
@@ -36,7 +41,7 @@ block main
                 thead 
                     tr 
                         th.check-box
-                            .checkbox-wrapper-23
+                            .checkbox-wrapper-23(checkAll)
                                 input#check-23-1(type="checkbox")
                                 label(
                                     style="--size: 20px" 
@@ -61,66 +66,52 @@ block main
                         th.action
                             div Hành động
                 tbody 
-                    tr 
-                        td.check-box
-                            .checkbox-wrapper-23
-                                input#check-23-2(type="checkbox")
-                                label(
-                                    style="--size: 20px" 
-                                    for="check-23-2"
+                    each item in listAccount
+                        tr 
+                            td.check-box
+                                .checkbox-wrapper-23(checkItem)
+                                    input(
+                                        type="checkbox"
+                                        id="check-"+item._id 
+                                        checkItemID=item._id
                                     )
-                                    svg(viewBox="0,0,50,50")
-                                        path(d="M5 30 L 20 45 L 45 5")
-                        td.text 
-                            div Lê Văn A
-                        td.anh-dai-dien
-                            img(src="/adminasset/image/avatar.png", alt="")
-                        td.text
-                            div levana@gmail.com
-                        td.text
-                            div 01234567890
-                        td.text
-                            div Quản trị viên
-                        td.text
-                            div Giám đốc
-                        td.state
-                            .working Hoạt động
-                        td.action
-                            .inner-list 
-                                div 
-                                    i.fa-solid.fa-pen-to-square
-                                div 
-                                    i.fa-solid.fa-trash-can
-                    tr 
-                        td.check-box
-                            .checkbox-wrapper-23
-                                input#check-23-2(type="checkbox")
-                                label(
-                                    style="--size: 20px" 
-                                    for="check-23-2"
+                                    label(
+                                        style="--size: 20px" 
+                                        for="check-"+item._id 
+                                        )
+                                        svg(viewBox="0,0,50,50")
+                                            path(d="M5 30 L 20 45 L 45 5")
+                            td.text 
+                                div #{item.fullname}
+                            td.anh-dai-dien
+                                img(src=item.avatar, alt="")
+                            td.text
+                                div #{item.email}
+                            td.text
+                                div #{item.phone}
+                            td.text
+                                div #{item.roleFormat}
+                            td.text
+                                div #{item.roleName}
+                            td.state
+                                if(item.status=="active")
+                                    .active Hoạt động
+                                else if(item.status=="inactive")
+                                    .inactive Ngừng hoạt động
+                                else if(item.status=="pending")
+                                    .pending Chờ duyệt
+                                else if(item.status=="delete")
+                                    .delete Đã xoá
+                            td.action
+                                .inner-list 
+                                    a.inner-icon(href=`/${pathAdmin}/setting/account-admin/edit/${item._id}`) 
+                                        i.fa-solid.fa-pen-to-square
+                                    div.inner-icon(
+                                        data-id=item._id 
+                                        data-api=`/${pathAdmin}/setting/account-admin/delete`
                                     )
-                                    svg(viewBox="0,0,50,50")
-                                        path(d="M5 30 L 20 45 L 45 5")
-                        td.text 
-                            div Lê Văn A
-                        td.anh-dai-dien
-                            img(src="/adminasset/image/avatar.png", alt="")
-                        td.text
-                            div levana@gmail.com
-                        td.text
-                            div 01234567890
-                        td.text
-                            div Quản trị viên
-                        td.text
-                            div Giám đốc
-                        td.state
-                            .working Hoạt động
-                        td.action
-                            .inner-list 
-                                div 
-                                    i.fa-solid.fa-pen-to-square
-                                div 
-                                    i.fa-solid.fa-trash-can
+                                        i.fa-solid.fa-trash-can
+                   
         .section-6 
             div Hiển thị 1 - 9 của 78
             select 

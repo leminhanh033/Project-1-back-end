@@ -3,170 +3,114 @@ extends ../layout/tong-quan-layout.pug
 block main
     .content
         .inner-title Quản lý đơn hàng
-        .section-4 
-            .inner-filter.inner-border 
-                img(src="/adminasset/image/Filter-icon.svg", alt="") 
-                div Bộ lọc
-            .inner-item.inner-border 
-                select 
-                    option Trạng thái
-            .inner-date.inner-border 
-                input(type="date")
-                div -
-                input(type="date")
-            .inner-item.inner-border 
-                select 
-                    option Phương thức thanh toán
-            .inner-item.inner-border 
-                select 
-                    option Trạng thái thanh toán
-            .inner-reset
-                i.fa-solid.fa-rotate-left
-                div Xóa bộ lọc
-        .section-5 
-            .inner-search 
-                i.fa-solid.fa-magnifying-glass
-                input(type="text" placeholder="Tìm kiếm")
+        if(accountLogin.listRights.includes("view-order"))
+            .section-4 
+                .inner-filter.inner-border 
+                    img(src="/adminasset/image/Filter-icon.svg", alt="") 
+                    div Bộ lọc
+                .inner-item.inner-border 
+                    select(filter="status")
+                        option(value="") Trạng thái
+                        option(value="active") Hoạt động
+                        option(value="inactive") Ngừng hoạt động
+                        option(value="pending") Chờ duyệt
+                .inner-date.inner-border 
+                    input(type="date" filter="fromDate")
+                    div -
+                    input(type="date" filter="toDate")
+                .inner-item.inner-border 
+                    select(filter="paymentMethod")
+                        option(value="") Phương thức thanh toán
+                        option(value="money") Thanh toán tiền mặt 
+                        option(value="momo") Momo 
+                        option(value="zalopay") Sử dụng Zalopay
+                        option(value="vnpay") Sử dụng Vnpay
+                        option(value="bank") Chuyển khoản ngân hàng
+                .inner-item.inner-border 
+                    select(filter="paymentStatus")
+                        option(value="") Trạng thái thanh toán
+                        option(value="paid") Đã thanh toán 
+                        option(value="unpaid") Chưa thanh toán
+                .inner-reset(filter-reset)
+                    i.fa-solid.fa-rotate-left
+                    div Xóa bộ lọc
+            .section-5 
+                .inner-search 
+                    i.fa-solid.fa-magnifying-glass
+                    input(type="text" placeholder="Tìm kiếm" search )
 
-        .section-7 
-            .table 
-                table 
-                    thead 
-                        tr 
-                            th Mã
-                            th Thông tin khách
-                            th Danh sách tour
-                            th Thanh toán
-                            th Trạng thái
-                            th Ngày đặt
-                            th Hành động
+            .section-7 
+                .table 
+                    table 
+                        thead 
+                            tr 
+                                th Mã
+                                th Thông tin khách
+                                th Danh sách tour
+                                th Thanh toán
+                                th Trạng thái
+                                th Ngày đặt
+                                th Hành động
+                                
+                        tbody 
+                            each order in orderList
+                                tr 
+                                    td #{order.code}
+                                    td
+                                        div Họ tên: #{order.fullname}
+                                        div SĐT: #{order.phone}
+                                        div Ghi chú: #{order.note}
+                                    td
+                                        .list-product
+                                            each item in order.items
+                                                .inner-product 
+                                                    img(src=item.avatar, alt="")
+                                                    .inner-content 
+                                                        div Tour Hạ Long
+                                                        div Người lớn: #{item.quantityAdult} x #{item.priceAdult.toLocaleString("vi-VN")}đ
+                                                        div Trẻ em: #{item.quantityChild} x #{item.priceChild.toLocaleString("vi-VN")}đ
+                                                        div Em bé: #{item.quantityBaby} x #{item.priceBaby.toLocaleString("vi-VN")}đ
+                                        
+                                    td 
+                                        div Tổng tiền: #{order.subtotal.toLocaleString("vi-VN")}đ
+                                        div Giảm: 0đ
+                                        div Mã giảm: 
+                                        div Thanh toán: #{order.total.toLocaleString("vi-VN")}đ
+                                        div PTTT: #{order.paymentMethodFormat}
+                                        div TTTT: #{order.paymentStatus=="paid"?"Đã thanh toán":"Chưa thanh toán"}
+                                    td 
+                                        if(order.status=="active")
+                                            div.active Đang hoạt động
+                                        if(order.status=="inactive")
+                                            div.inactive Dừng hoạt động
+                                        if(order.status=="pending")
+                                            div.pending Chờ duyệt
+                                        if(order.status=="delete")
+                                            div.delete Đã xoá
+                                    td.center 
+                                        div #{order.createdAtTime}
+                                        div #{order.createdAtDate}
+                                    td.action
+                                        .inner-list 
+                                            if(accountLogin.listRights.includes("edit-order"))
+                                                a.inner-icon(href=`/${pathAdmin}/order/edit/${order.code}`) 
+                                                    i.fa-solid.fa-pen-to-square
+                                            if(accountLogin.listRights.includes("delete-order"))
+                                                div#deleteButton.inner-icon(data-id=order._id data-api=`/${pathAdmin}/order/delete`)
+                                                    i.fa-solid.fa-trash-can
+                                            a.inner-icon(
+                                                href=`/order/success?code=${order.code}&phone=${order.phone}`
+                                                title="Thanh toán đơn hàng"
+                                            ) 
+                                                i.fa-solid.fa-link-slash
                             
-                    tbody 
-                        tr 
-                            td OD000001
-                            td
-                                div Họ tên: Lê Văn A
-                                div SĐT: 0123456789
-                                div Ghi chú: Test...
-                            td
-                                .inner-product 
-                                    img(src="/adminasset/image/halong.png", alt="")
-                                    .inner-content 
-                                        div Tour Hạ Long
-                                        div Người lớn: 3 x 1.500.000đ
-                                        div Trẻ em: 2 x 1.300.000đ
-                                        div Em bé: 2 x 1.000.000đ
-                                .inner-product 
-                                    img(src="/adminasset/image/halong.png", alt="")
-                                    .inner-content 
-                                        div Tour Hạ Long
-                                        div Người lớn: 3 x 1.500.000đ
-                                        div Trẻ em: 2 x 1.300.000đ
-                                        div Em bé: 2 x 1.000.000đ
-                            td 
-                                div Tổng tiền: 10.000.000đ
-                                div Giảm: 400.000đ
-                                div Mã giảm: TOURMUAHE2024
-                                div Thanh toán: 9.600.000đ
-                                div PTTT: Ví Momo
-                                div TTTT: Đã thanh toán
-                            td 
-                                div.produce Khởi tạo
-                            td.center 
-                                div 16:20
-                                div 01/01/2024
-                            td.action
-                                .inner-list 
-                                    div 
-                                        i.fa-solid.fa-pen-to-square
-                                    div 
-                                        i.fa-solid.fa-trash-can
-                        tr 
-                            td OD000001
-                            td
-                                div Họ tên: Lê Văn A
-                                div SĐT: 0123456789
-                                div Ghi chú: Test...
-                            td
-                                .inner-product 
-                                    img(src="/adminasset/image/halong.png", alt="")
-                                    .inner-content 
-                                        div Tour Hạ Long
-                                        div Người lớn: 3 x 1.500.000đ
-                                        div Trẻ em: 2 x 1.300.000đ
-                                        div Em bé: 2 x 1.000.000đ
-                                .inner-product 
-                                    img(src="/adminasset/image/halong.png", alt="")
-                                    .inner-content 
-                                        div Tour Hạ Long
-                                        div Người lớn: 3 x 1.500.000đ
-                                        div Trẻ em: 2 x 1.300.000đ
-                                        div Em bé: 2 x 1.000.000đ
-                            td 
-                                div Tổng tiền: 10.000.000đ
-                                div Giảm: 400.000đ
-                                div Mã giảm: TOURMUAHE2024
-                                div Thanh toán: 9.600.000đ
-                                div PTTT: Ví Momo
-                                div TTTT: Đã thanh toán
-                            td 
-                                div.checked Đã duyệt
-                            td.center
-                                div 16:20
-                                div 01/01/2024
-                            td.action
-                                .inner-list 
-                                    div 
-                                        i.fa-solid.fa-pen-to-square
-                                    div 
-                                        i.fa-solid.fa-trash-can
-                        tr 
-                            td OD000001
-                            td
-                                div Họ tên: Lê Văn A
-                                div SĐT: 0123456789
-                                div Ghi chú: Test...
-                            td
-                                .inner-product 
-                                    img(src="/adminasset/image/halong.png", alt="")
-                                    .inner-content 
-                                        div Tour Hạ Long
-                                        div Người lớn: 3 x 1.500.000đ
-                                        div Trẻ em: 2 x 1.300.000đ
-                                        div Em bé: 2 x 1.000.000đ
-                                .inner-product 
-                                    img(src="/adminasset/image/halong.png", alt="")
-                                    .inner-content 
-                                        div Tour Hạ Long
-                                        div Người lớn: 3 x 1.500.000đ
-                                        div Trẻ em: 2 x 1.300.000đ
-                                        div Em bé: 2 x 1.000.000đ
-                            td 
-                                div Tổng tiền: 10.000.000đ
-                                div Giảm: 400.000đ
-                                div Mã giảm: TOURMUAHE2024
-                                div Thanh toán: 9.600.000đ
-                                div PTTT: Ví Momo
-                                div TTTT: Đã thanh toán
-                            td 
-                                div.delete Đã hủy
-                            td.center
-                                div 16:20
-                                div 01/01/2024
-                            td.action
-                                .inner-list 
-                                    div 
-                                        i.fa-solid.fa-pen-to-square
-                                    div 
-                                        i.fa-solid.fa-trash-can
 
-        .section-6 
-            div Hiển thị 1 - 9 của 78
-            select 
-                option Trang 1
-                option Trang 2
-                option Trang 3
-                option Trang 4
-
+            .section-6 
+                    div Hiển thị #{pagination.skip+1} - #{pagination.skip+pagination.limit} của #{pagination.total}
+                    select(pagination)
+                        -for (let i=1;i<=pagination.numberPage;i++)
+                            option(value=i) Trang #{i}
+        else 
+            div.unable-access Không có quyền truy cập
 
                         

@@ -1,0 +1,45 @@
+extends ../layout/tong-quan-layout.pug
+include ../mixin/categoryTree.pug
+
+block main
+    .content
+        .inner-title Chỉnh sửa danh mục
+        if(accountLogin.listRights.includes("edit-category"))
+            form#edit-category.section-8(categoryID=category._id) 
+                .inner-group 
+                    label(for="name") Tên danh mục
+                    input(type="text" id="name" value=category.name )
+                .inner-group 
+                    label(for="parent") Danh mục cha
+                    select#parent(name="") 
+                        option(value="") -- Chọn danh mục --
+                        +categoryTree(listCategory,0,category.parent)
+                .inner-group 
+                    label(for="position") Vị trí
+                    input(type="number" id="position" value=category.position)
+                .inner-group 
+                    label(for="state") Trạng thái
+                    select#state(name="")
+                        option(value="active" selected=category.state=="active"?true:false) Hoạt động
+                        option(value="inactive" selected=category.state=="inactive"?true:false) Ngừng hoạt động
+                        option(value="pending" selected=category.state=="pending"?true:false) Chờ duyệt
+                .inner-group.two-col 
+                    div.avatar 
+                        label(for="avatar") Ảnh đại diện
+                        div.avartar-file
+                            input(type="file" id="avatar" filepond accept="image/*" avatar=category.avatar)
+                .inner-group.two-col 
+                    div.des
+                        label(for="des") Mô tả
+                        textarea#des(name="" textarea-mce) #{category.description}
+                .inner-group.two-col
+                    div.button
+                        button Cập nhật
+                .inner-group.two-col
+                    div.return
+                        a(href=`/${pathAdmin}/category/manage`) Quay lại danh sách
+        else 
+            div.unable-access Không có quyền truy cập
+
+
+                        

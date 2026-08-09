@@ -1,0 +1,92 @@
+extends ../layouts/default.pug
+
+block main
+  .section13(style="margin-top: 60px;")
+    .container
+      .inner-wrap
+        h4 Cảm ơn quý khách đã đặt tour! Chúng tôi sẽ liên hệ lại với quý khách trong thời gian sớm nhất.
+        .inner-head
+          .inner-title Thông tin đơn hàng
+        p Mã đơn hàng: #{order.code}
+        p Tên khách hàng: #{order.fullname}
+        p Số điện thoại: #{order.phone}
+        p Ghi chú: #{order.note}
+        p Phương thức thanh toán: #{order.paymentMethodName}
+        p Trạng thái thanh toán: #{order.paymentStatus=="paid"?"Đã thanh toán":"Chưa thanh toán"}
+        p Trạng thái đơn hàng: #{order.statusFormat}
+        p Ngày đặt: #{order.createdAtFormat}
+
+  .section11
+    .container
+      .inner-wrap
+        .inner-label
+          div Danh sách tour
+        if(order.items&&order.items.length>0)
+          .list-product
+            each item in order.items
+              .inner-product
+                .infor-product
+                  img(
+                    alt="" 
+                    src=item.avatar
+                    )
+                  .inner-infor
+                    .infor-label #{item.name}
+                    div
+                      div
+                        | Mã Tour: 
+                        b 123456789
+                      div
+                        | Ngày Khởi Hành: 
+                        b #{item.departureDate}
+                      div
+                        | Thời Gian: 
+                        b #{item.time}
+                .inner-section-4
+                  .inner-section-label Số Lượng Hành Khách
+                  .infor
+                    .label Người lớn:
+                    .price
+                      span #{item.quantityAdult}
+                      span  x 
+                      span.hl #{item.priceAdult.toLocaleString("vi-VN")}
+                  .infor
+                    .label Trẻ em:
+                    .price
+                      span #{item.quantityChild}
+                      span  x 
+                      span.hl #{item.priceChild.toLocaleString("vi-VN")}
+                  .infor
+                    .label Em bé:
+                    .price
+                      span #{item.quantityBaby}
+                      span  x 
+                      span.hl #{item.priceBaby.toLocaleString("vi-VN")}
+        .coupon
+          form#coupon-form(action="")
+            input#coupon-input(type="text")
+            button Dùng Mã
+        .total
+          div
+            .total-label Tổng tiền:
+            .price
+              .first-price #{order.subtotal.toLocaleString("vi-VN")} 
+              span  đ
+          div
+            .total-label Giảm:
+            .price 
+              span - 
+              .discount #{(order.subtotal-order.total).toLocaleString("vi-VN")} 
+              span đ
+          div
+            .total-label Thanh toán:
+            .hl 
+              .final-price #{order.total.toLocaleString("vi-VN")} 
+              span đ
+        if(order.paymentStatus=="unpaid")
+          .button
+            button.payment(
+              paymentMethod=order.paymentMethod
+              code=order.code
+              phone=order.phone
+            ) Thanh toán

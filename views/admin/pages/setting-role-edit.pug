@@ -1,0 +1,43 @@
+extends ../layout/tong-quan-layout.pug
+
+
+block main
+    .content
+        .inner-title #{title}
+        form#edit-role.section-8(roleID=role._id) 
+            .inner-group 
+                label(for="name") Tên nhóm quyền *
+                input(type="text" id="name" name="name" value=role.name)
+            .inner-group 
+                label(for="desc") Mô tả ngắn
+                input(type="text" id="desc" value=role.description)
+          
+            .inner-group.destination 
+                div Phân quyền
+                .inner-destination
+                    each item,index in listRights
+                        .inner-item(rights)                 
+                            .checkbox-wrapper-23
+                                input(
+                                    type="checkbox" 
+                                    id="check-"+index 
+                                    value=item.value
+                                    checked=role.listRights.includes(item.value)
+                                )
+                                label(
+                                    style=`--size:20px ;background-color: white`
+                                    for="check-"+index
+                                )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
+                            span #{item.label}
+                    
+            .inner-group.two-col
+                div.button
+                    button Cập nhật
+            .inner-group.two-col
+                div.return
+                    a(href=`/${pathAdmin}/setting/role/list`) Quay lại danh sách
+
+
+                        

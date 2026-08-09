@@ -6,13 +6,13 @@ block main
         
         .section-5 
             .inner-action 
-                select 
+                select(actionOption)
                     option -- Hành động --
-                    option Hành động
-                div Áp dụng
+                    option(value="delete") Xoá
+                div(applyButton data-api=`/${pathAdmin}/setting/role/list`) Áp dụng
             .inner-search 
                 i.fa-solid.fa-magnifying-glass
-                input(type="text" placeholder="Tìm kiếm")
+                input(type="text" placeholder="Tìm kiếm" search)
             a.create-button(href=`/${pathAdmin}/setting/role/create`)  + Tạo mới
                 
         .table-1 
@@ -20,57 +20,46 @@ block main
                 thead 
                     tr 
                         th.check-box
-                            include ../mixin/checkbox.pug
-                            +checkbox("checkbox-1","20px")
+                            .checkbox-wrapper-23(checkAll)
+                                input(type="checkbox" id="checkAll" )
+                                label(
+                                    style=`--size: 20px;background-color: white`
+                                    for="checkAll"
+                                )
+                                    svg(viewBox="0,0,50,50")
+                                        path(d="M5 30 L 20 45 L 45 5")
                         th.left 
                             div Tên nhóm quyền
                         th.left
                             div Mô tả ngắn
                         th.action
                             div Hành động
-                tbody 
-                    tr 
-                        td.check-box
-                            include ../mixin/checkbox.pug
-                            +checkbox("checkbox-3","20px")
-                        td.left
-                            div Quản trị viên
-                        td.left
-                            div Có đầy đủ các quyền
-                        td.action.left
-                            .inner-list 
-                                div 
-                                    i.fa-solid.fa-pen-to-square
-                                div 
-                                    i.fa-solid.fa-trash-can
-                    tr 
-                        td.check-box
-                            include ../mixin/checkbox.pug
-                            +checkbox("checkbox-4","20px")
-                        td.left
-                            div Quản lý tour
-                        td.left
-                            div Có đầy đủ quyền liên quan đến tour
-                        td.action.left
-                            .inner-list 
-                                div 
-                                    i.fa-solid.fa-pen-to-square
-                                div 
-                                    i.fa-solid.fa-trash-can
-                    tr 
-                        td.check-box
-                            include ../mixin/checkbox.pug
-                            +checkbox("checkbox-3","20px")
-                        td.left
-                            div Quản lý đơn hàng
-                        td.left
-                            div Có đầy đủ quyền liên quan đến đơn hàng
-                        td.action.left
-                            .inner-list
-                                div 
-                                    i.fa-solid.fa-pen-to-square
-                                div 
-                                    i.fa-solid.fa-trash-can
+                tbody
+                    each item in listRights 
+                        tr 
+                            td.check-box
+                                .checkbox-wrapper-23(checkItem)
+                                    input(type="checkbox" id="check-"+item._id checkItemID=item._id)
+                                    label(
+                                        style=`--size: 20px;background-color: white`
+                                        for="check-"+item._id
+                                    )
+                                        svg(viewBox="0,0,50,50")
+                                            path(d="M5 30 L 20 45 L 45 5")
+                            td.left
+                                div #{item.name}
+                            td.left
+                                div #{item.description}
+                            td.action.left
+                                .inner-list 
+                                    a.inner-icon(href=`/${pathAdmin}/setting/role/edit/${item._id}`)
+                                        i.fa-solid.fa-pen-to-square
+                                    div.inner-icon#deleteButton(
+                                        data-id=item._id 
+                                        data-api=`/${pathAdmin}/setting/role/list/delete`
+                                    ) 
+                                        i.fa-solid.fa-trash-can
+                    
         
     
 

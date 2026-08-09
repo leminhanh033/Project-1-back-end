@@ -5,8 +5,8 @@ block main
         .inner-title Tạo tài khoản quản trị
         form#admin-create.section-8 
             .inner-group 
-                label(for="name") Họ tên
-                input(type="text" id="name" )
+                label(for="fullname") Họ tên
+                input(type="text" id="fullname" )
             .inner-group 
                 label(for="email") Email
                 input(type="email" id="email")
@@ -14,20 +14,22 @@ block main
                 label(for="phone") Số điện thoại
                 input(type="text" id="phone")            
             .inner-group 
-                label(for="nhom-quyen") Nhóm quyền
-                select#nhom-quyen(name="") 
-                    option Quản trị viên
+                label(for="role") Nhóm quyền
+                select#role(name="") 
+                    for element in listRole
+                        option(value=element._id) #{element.name}
             .inner-group 
-                label(for="chuc-vu") Chức vụ
-                select#chuc-vu(name="") 
-                    option Giám đốc
+                label(for="roleName") Chức vụ
+                input#roleName(type="text" )
             .inner-group 
-                label(for="state") Trạng thái
-                select#state(name="") 
-                    option Hoạt động
+                label(for="status") Trạng thái
+                select#status(name="") 
+                    option(value="active") Hoạt động
+                    option(value="inactive") Ngừng hoạt động
+                    option(value="pending") Chờ duyệt
             .inner-group 
-                label(for="pass") Mật khẩu
-                input(type="password" id="pass")
+                label(for="password") Mật khẩu
+                input(type="password" id="password")
             .inner-group.two-col
                 div.avatar 
                     label(for="avatar") Ảnh đại diện

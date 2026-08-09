@@ -1,0 +1,50 @@
+extends ../layout/tong-quan-layout.pug
+
+block main
+    .content
+        .inner-title #{title}
+        form#admin-edit.section-8(accountId=account._id) 
+            .inner-group 
+                label(for="fullname") Họ tên
+                input(type="text" id="fullname" value=account.fullname)
+            .inner-group 
+                label(for="email") Email
+                input(type="email" id="email" value=account.email)
+            .inner-group 
+                label(for="phone") Số điện thoại
+                input(type="text" id="phone" value=account.phone)            
+            .inner-group 
+                label(for="role") Nhóm quyền
+                select#role(name="") 
+                    for element in listRole
+                        option(
+                            value=element._id
+                            selected=element._id==account.role
+                        ) #{element.name}
+            .inner-group 
+                label(for="roleName") Chức vụ
+                input#roleName(type="text" value=account.roleName)
+            .inner-group 
+                label(for="status") Trạng thái
+                select#status(name="") 
+                    option(value="active" selected=account.status=="active") Hoạt động
+                    option(value="inactive" selected=account.status=="inactive") Ngừng hoạt động
+                    option(value="pending" selected=account.status=="pending") Chờ duyệt
+            .inner-group 
+                label(for="password") Mật khẩu
+                input(type="password" id="password")
+            .inner-group.two-col
+                div.avatar 
+                    label(for="avatar") Ảnh đại diện
+                    div.avartar-file
+                        input(type="file" id="avatar" filepond avatar=account.avatar)
+            
+            .inner-group.two-col
+                div.button
+                    button Cập nhật
+            .inner-group.two-col
+                div.return
+                    a(href=`/${pathAdmin}/setting/account-admin/list`) Quay lại danh sách
+
+
+                        

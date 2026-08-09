@@ -1,14 +1,40 @@
 //model
-const {Tour}=require("../../models/client/Tour.model.js");
+const tourmodel=require("../../models/admin/tour.model");
+const categorymodel=require("../../models/admin/category.model");
+const provincemodel=require("../../models/admin/province.model");
 
-module.exports.tourList=async(req, res) => {
+const findCategoryParent=async(categoryID)=>{
+  const currentCategory=await categorymodel.findOne({
+    _id:categoryID,
+  })
+  currentCategory.path=`/category/${currentCategory.slug}`;
 
-  console.log("Danh sách tour");
-  res.render('client/pages/tourlist',{title:"Danh sách tour"});
+  if(currentCategory.parent=="")
+    return [currentCategory];
 
+  const parentList=await findCategoryParent(currentCategory.parent);
+  const listCategory=[...parentList,currentCategory];
+  return listCategory;
 }
 
 module.exports.tourDetail=async(req,res)=>{
-  console.log("Chi tiết tour");
-  res.render('client/pages/tourdetail.pug',{title:"Chi tiết tour"});
+  const tourDetail=await tourmodel.findOne({
+    slug:req.params.slug,
+    deleted:false,
+  })
+
+  
+  tourDetail.path=`/tour/detail/${tourDetail.slug}`;
+
+  const categoryList=await findCategoryParent(tourDetail.category);
+  tourDetail.categoryParent=categoryList;
+
+  tourDetail.destinationFormat=await provincemodel.find({
+    _id:{$in:tourDetail.destination},
+  })
+
+  res.render('client/pages/tourdetail.pug',{
+    title:"Chi tiết tour",
+    tourDetail,
+  });
 }

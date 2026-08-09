@@ -1,0 +1,5 @@
+mixin categoryTree(listCategory,level=0,parentID)
+  if listCategory&&listCategory.length>0 
+    each item in listCategory
+      option(value=item.id selected=item.id==parentID?true:false)= "--".repeat(level) + item.name
+      +categoryTree(item.children,level+1,parentID)

@@ -1,54 +1,155 @@
 extends ../layout/tong-quan-layout.pug
+include ../mixin/categoryTree.pug
 
 block main
     .content
         .inner-title Quản lý tour
-        .section-4 
-            .inner-filter.inner-border 
-                img(src="/adminasset/image/Filter-icon.svg", alt="") 
-                div Bộ lọc
-            .inner-item.inner-border 
-                select 
-                    option Trạng thái 
-            .inner-item.inner-border 
-                select 
-                    option Người tạo
-            .inner-date.inner-border 
-                input(type="date")
-                div -
-                input(type="date")
-            .inner-item.inner-border 
-                select 
-                    option Danh mục
-            .inner-item.inner-border 
-                select 
-                    option Mức giá
-            .inner-reset
-                i.fa-solid.fa-rotate-left
-                div Xóa bộ lọc
-        .section-5 
-            .inner-action 
-                select 
-                    option -- Hành động --
-                    option Hành động
-                div Áp dụng
-            .inner-search 
-                i.fa-solid.fa-magnifying-glass
-                input(type="text" placeholder="Tìm kiếm")
-            a.create-button(href=`/${pathAdmin}/tour/create`)  + Tạo mới
-            .inner-trash
-                a(href=`/${pathAdmin}/tour/rubbish`) Thùng rác
-                
-        include ../mixin/table-1-update.pug
-        +table-1("fa-solid fa-pen-to-square","Cập nhật bởi")
-        
-        .section-6 
-            div Hiển thị 1 - 9 của 78
-            select 
-                option Trang 1
-                option Trang 2
-                option Trang 3
-                option Trang 4
+            if(accountLogin.listRights.includes("view-tour"))
+                .section-4 
+                    .inner-filter.inner-border 
+                        img(src="/adminasset/image/Filter-icon.svg", alt="") 
+                        div Bộ lọc
+                    .inner-item.inner-border 
+                        select(filter="state") 
+                            option(value="") Trạng thái 
+                            option(value="active") Hoạt động
+                            option(value="inactive") Ngừng hoạt động
+                            option(value="pending") Chờ duyệt
+                    .inner-item.inner-border 
+                        select(filter="createPerson")
+                            option(value="") Người tạo
+                            each person in account 
+                                option(value=person.id) #{person.fullname}
+                    .inner-date.inner-border 
+                        input(type="date" filter="fromDate")
+                        div -
+                        input(type="date" filter="toDate")
+                    .inner-item.inner-border 
+                        select(filter="category")
+                            option(value="") Danh mục
+                            +categoryTree(categoryList,0,"")
+                    .inner-item.inner-border 
+                        select(filter="price")
+                            option(value="") Mức giá
+                            option(value="0-1000000") Dưới 1 triệu
+                            option(value="1000000-2000000") 1 triệu- 2 triệu
+                            option(value="2000000-3000000") 2 triệu- 3 triệu
+                            option(value="3000000-4000000") 3 triệu- 4 triệu
+                            option(value="4000000-5000000") 4 triệu- 5 triệu
+                            option(value="5000000+") Trên 5 triệu
+                    .inner-reset(filter-reset)
+                        i.fa-solid.fa-rotate-left
+                        div Xóa bộ lọc
+                .section-5 
+                    .inner-action 
+                        select(actionOption)
+                            option(value="") -- Hành động --
+                            if(accountLogin.listRights.includes("edit-tour"))
+                                option(value="active") Hoạt động
+                                option(value="inactive") Dừng hoạt động
+                            if(accountLogin.listRights.includes("delete-tour"))
+                                option(value="delete") Xoá tour
+                        div(applyButton data-api=`/${pathAdmin}/tour/applyPatch`) Áp dụng
+                    .inner-search 
+                        i.fa-solid.fa-magnifying-glass
+                        input(type="text" placeholder="Tìm kiếm" search)
+                    if(accountLogin.listRights.includes("create-tour"))
+                        a.create-button(href=`/${pathAdmin}/tour/create`)  + Tạo mới
+                    if(accountLogin.listRights.includes("rubbish-tour"))
+                        .inner-trash
+                            a(href=`/${pathAdmin}/tour/rubbish`) Thùng rác      
+                .table-1          
+                    table 
+                        thead 
+                            tr.check-box 
+                                th.check-box
+                                    .checkbox-wrapper-23(checkAll)
+                                        input#check-23-1(type="checkbox")
+                                        label(
+                                            style="--size: 20px" 
+                                            for="check-23-1"
+                                            )
+                                            svg(viewBox="0,0,50,50")
+                                                path(d="M5 30 L 20 45 L 45 5")
+                                th.name-tour 
+                                    div Tên tour
+                                th.anh-dai-dien
+                                    div Ảnh đại diện
+                                th.price
+                                    div Giá
+                                th.remain
+                                    div Còn lại
+                                th.position
+                                    div Vị trí
+                                th.state
+                                    div Trạng thái
+                                th.tao-boi
+                                    div Tạo bởi
+                                th.update
+                                    div Cập nhật bởi
+                                th.action
+                                    div Hành động
+                        tbody
+                            if(tourList.length>0)
+                                each item in tourList 
+                                    tr 
+                                        td.check-box
+                                            .checkbox-wrapper-23(checkItem)
+                                                input(type="checkbox" id=`check-${item._id}` checkItemID=item._id)
+                                                label(
+                                                    style="--size: 20px" 
+                                                    for=`check-${item._id}`
+                                                    )
+                                                    svg(viewBox="0,0,50,50")
+                                                        path(d="M5 30 L 20 45 L 45 5")
+                                        td.name-tour
+                                            div #{item.name}
+                                        td.anh-dai-dien 
+                                            img(src=item.avatar, alt="") 
+                                        td.price 
+                                            div NL: #{item.newAdult?item.newAdult.toLocaleString("vi-VN"):0}đ
+                                            div TE:  #{item.newChild?item.newChild.toLocaleString("vi-VN"):0}đ
+                                            div EB:  #{item.newBaby?item.newBaby.toLocaleString("vi-VN"):0}đ
+                                        td.remain 
+                                            div NL:  #{item.remainAdult}
+                                            div TE:  #{item.remainChild}
+                                            div EB:  #{item.remainBaby}
+                                        td.position
+                                            div #{item.position}
+                                        td.status
+                                            if item.state=="active" 
+                                                .active Hoạt động
+                                            else if item.state=="inactive" 
+                                                .inactive Ngừng hoạt động
+                                            else if item.state=="delete"
+                                                .delete Đã bị xoá
+                                            else 
+                                                .pending Chờ duyệt
+                                        td.tao-boi
+                                            div #{item.createdByName}
+                                            div #{item.createdAtFormat}
+                                        td.update
+                                            if(item.updatedBy)
+                                                div #{item.updatedByName}
+                                                div #{item.updatedAtFormat}
+                                        td.action
+                                            .inner-list 
+                                                if(accountLogin.listRights.includes("edit-tour"))
+                                                    a.inner-icon(href=`/${pathAdmin}/tour/edit/${item._id}`)  
+                                                        i.fa-solid.fa-pen-to-square
+                                                if(accountLogin.listRights.includes("delete-tour"))                                                
+                                                    div.inner-icon#deleteButton(data-id=item.id data-api=`/${pathAdmin}/tour/delete`)
+                                                        i.fa-solid.fa-trash-can
+                            else 
+                                tr 
+                                    td.empty-data(colspan="10") Không có dữ liệu
+                .section-6 
+                    div Hiển thị #{pagination.skip+1} - #{pagination.skip+pagination.limit} của #{pagination.total}
+                    select(pagination)
+                        -for (let i=1;i<=pagination.numberPage;i++)
+                            option(value=i) Trang #{i}
+           
+            else
+                div.unable-access Không có quyền truy cập
 
-
-                        
+                                

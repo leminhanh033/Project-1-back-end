@@ -71,3 +71,94 @@ module.exports.login=async(req,res,next)=>{
   }
   next();
 }
+
+module.exports.login=async(req,res,next)=>{
+  const schema = Joi.object({
+    email:Joi.string().required().email()
+    .messages({
+      "string.empty":"Vui lòng nhập email của bạn",
+      "string.email":"Email không hợp lệ"
+    }),
+    password:Joi.string().required()
+    .messages({
+      "string.empty":"Vui lòng nhập mật khẩu của bạn"
+    }),
+    rememberpassword:Joi.boolean().required()
+  })
+  try {
+    const value = await schema.validateAsync(req.body);
+  } catch (error) {
+    if(error){
+      res.json({
+        code:"error",
+        message:error.details[0].message,
+      })
+      return;
+    }
+  }
+  next();
+}
+
+module.exports.forgotpassword=async(req,res,next)=>{
+  const schema = Joi.object({
+    email:Joi.string().required().email()
+    .messages({
+      "string.empty":"Vui lòng nhập email của bạn",
+      "string.email":"Email không hợp lệ"
+    })
+  })
+  try {
+    const value = await schema.validateAsync(req.body);
+  } catch (error) {
+    if(error){
+      res.json({
+        code:"error",
+        message:error.details[0].message,
+      })
+    }
+    return;
+  }
+  next();
+}
+
+module.exports.enterotp=async(req,res,next)=>{
+  const schema = Joi.object({
+    otp:Joi.string().required()
+    .messages({
+      "string.empty":"Vui lòng nhập mã otp",
+    })
+  }).unknown(true);
+  try {
+    const value = await schema.validateAsync(req.body);
+  } catch (error) {
+    if(error){
+      res.json({
+        code:"error",
+        message:error.details[0].message,
+      })
+      return;
+    }
+  }
+  next();
+}
+
+module.exports.resetpassword=async(req,res,next)=>{
+  const schema = Joi.object({
+   password:Joi.string().required()
+    .messages({
+      "string.empty":"Vui lòng nhập mật khẩu mới",
+    })
+  }).unknown(true);
+  try {
+    const value = await schema.validateAsync(req.body);
+  } catch (error) {
+    if(error){
+      res.json({
+        code:"error",
+        message:error.details[0].message,
+      })
+      return;
+    }
+  }
+  next();
+}

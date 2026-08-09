@@ -6,26 +6,26 @@ block main
         form#website-infor.section-8 
             .inner-group 
                 label(for="name") Tên website
-                input(type="text" id="name" )
+                input(type="text" id="name" value=websiteInfor.name)
             .inner-group 
                 label(for="phone") Số điện thoại
-                input(type="text" id="phone")
+                input(type="text" id="phone" value=websiteInfor.phone)
             .inner-group 
                 label(for="email") Email
-                input(type="email" id="email")
+                input(type="email" id="email" value=websiteInfor.email)
             .inner-group 
                 label(for="address") Địa chỉ
-                input(type="text" id="address")
+                input(type="text" id="address" value=websiteInfor.address)
             .inner-group 
                 div.avatar 
                     label(for="avatar") Ảnh đại diện
                     div.avartar-file
-                        input(type="file" id="avatar" filepond )
+                        input(type="file" id="avatar" filepond avatar=websiteInfor.avatar)
             .inner-group 
                 div.avatar 
-                    label(for="avatar-1") Favicon
+                    label(for="favicon") Favicon
                     div.avartar-file
-                        input(type="file" id="avatar" filepond)
+                        input(type="file" id="favicon" filepond avatar=websiteInfor.favicon)
             .inner-group.two-col
                 div.button
                     button Cập nhật

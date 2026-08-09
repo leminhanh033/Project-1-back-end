@@ -1,0 +1,40 @@
+mixin tourBlock(data)
+  img(
+    alt="" 
+    src=data.avatar
+    )
+  div
+    i.fa-solid.fa-bolt
+    span Giảm -#{data.discount||"0"}%
+  div.tour-name 
+    a(href=`/tour/detail/${data.slug}`) #{data.name}
+  div
+    div.oldPrice
+      span
+        del #{data.oldAdult.toLocaleString("vi-VN")}
+      span đ
+    div.newPrice
+      span #{data.newAdult.toLocaleString("vi-VN")}
+      span đ
+  div
+    div
+      | Mã Tour: 
+      b #{data.tourCode}
+    div
+      | Ngày Khởi Hành: 
+      b= data.departureDateFormat || ""
+    div
+      | Thời Gian: 
+      b #{data.time}
+  div
+    div
+      div
+        i.fa-solid.fa-star
+        i.fa-solid.fa-star
+        i.fa-solid.fa-star
+        i.fa-solid.fa-star
+        i.fa-regular.fa-star
+      span (5)
+    div
+      span Số chỗ còn:
+      span #{data.remainAdult}
